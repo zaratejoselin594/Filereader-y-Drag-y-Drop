@@ -1,22 +1,26 @@
-"use scrict";
+"use scrict"; 
+//llamar a la zona que recibe el evento
 const zona = document.querySelector(".zona-arrastre");
 
+//identificar si algun obj se encuentra dentro de la zona
 zona.addEventListener("dragover", (e) => {
   e.preventDefault();
-  cambiarColor(e.target, "#fb47", "#ddf5");
+  cambiarColor(e.target, "#ff95", "#ddf5");
   zona.style.boxShadow ="-10px -10px 15px #0003"
 })
 
+//indentificaar si el oobj se aleja
 zona.addEventListener("dragleave", (e) => {
   e.preventDefault();
-  cambiarColor(e.target, "#ab68fd", "#ddf");
+  cambiarColor(e.target, "#7961e5", "#ddf");
   zona.style.boxShadow = "10px 10px 15px #0003"
 })
 
 let indice = 0;
 
+//indica si el obj se solto dentro de la zona
 zona.addEventListener("drop", (e) => {
-  cambiarColor(e.target, "#ab68fd", "#ddf")
+  cambiarColor(e.target, "#7961e5", "#ddf")
   e.preventDefault();
   zona.style.boxShadow = "10px 10px 15px #0003"
   const archivo = e.dataTransfer.files[0];
@@ -26,11 +30,13 @@ zona.addEventListener("drop", (e) => {
   else if (archivo.type === "video/mp4") cargarVideo(archivo, archivo.name);
 })
 
+//cambiar colores para provocar impacto visual
 const cambiarColor = (obj, color, ctxt) => {
   obj.style.border = `${color} solid 5px`;
   obj.style.color = `${ctxt}`;
 }
 
+//carga el texto en el div con la clase salida
 const cargarTxt = (ar, nombre) => {
   const leer = new FileReader();
   leer.readAsText(ar);
@@ -40,23 +46,25 @@ const cargarTxt = (ar, nombre) => {
     mostrarAr(nombre, txtData, ar)
   })
 }
+
+let ind = 1;
+//muestra el nombre del archivo en una columna, y con una funcion de click en el nombre de algun archivo este se muestra nuevamente en la pantalla
 const mostrarAr = (nombre, ar, archivo) => {
   const listaAr = document.querySelector(".contenido");
   const p = document.createElement("p");
   indice++
-  p.classList.add(`${indice}`)
+  p.classList.add(`${indice}`);
   listaAr.appendChild(p);
- 
   p.textContent = `${nombre}`;
   sessionStorage.setItem(`${nombre}`, `${ar}`);
+
   p.addEventListener("click", () => {
-    console.log(archivo)
     if (archivo.type === "text/plain") {
       if (nombre == p.textContent) document.querySelector(".salida").textContent = sessionStorage.getItem(`${nombre}`);
     }
     else if (archivo.type === "image/png" || archivo.type === "image/jpeg") {
       if (nombre == p.textContent) {
-        console.log("hola")
+        document.querySelectorAll(`${archivo.name}`);
       }
     }
     else if (archivo.type === "video/mp4") {
@@ -64,20 +72,22 @@ const mostrarAr = (nombre, ar, archivo) => {
   })
 }
 
-
+//cargar las imagenes en el div con la clase salida
 const cargarImg = (ar, nombre) => {
   const leer = new FileReader();
   leer.readAsDataURL(ar);
   barProgress(ar)
   leer.addEventListener("load", (e) => {
     let url = URL.createObjectURL(ar);
-    mostrarAr(nombre, url)
+    mostrarAr(nombre, url, ar);
     let IMG = document.createElement("IMG");
     IMG.setAttribute("src", url);
+    IMG.classList.add(`${nombre}`)
     document.querySelector(".salida").appendChild(IMG);
   })
 }
 
+//muestra el video e el div con la clase salida
 const cargarVideo = (ar) => {
   const leer = new FileReader();
   leer.readAsArrayBuffer(ar);
@@ -96,6 +106,7 @@ const cargarVideo = (ar) => {
   })
 }
 
+//barra de progreso si se muestra tiempo de espera
 const barProgress = (obj) => {
   const leer = new FileReader();
   leer.addEventListener("progress", (e) => {
