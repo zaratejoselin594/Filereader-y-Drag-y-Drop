@@ -72,10 +72,10 @@ const mostrarAr = (nombre, ar, archivo) => {
           let llave = sessionStorage.key(i);
           if (llave === nombre) {
             console.log("SI:  " + llave);
-            document.getElementsByClassName(`${llave.toString()}`)[0].classList.remove("invisible");
+            document.getElementsByClassName(`${llave}`)[0].classList.remove("invisible");
           } else{
             console.log("NO:  " + llave);
-            document.getElementsByClassName(`${llave.toString()}`)[0].classList.add("invisible");
+            document.getElementsByClassName(`${llave}`)[0].classList.add("invisible");
           }
         }
       } 
