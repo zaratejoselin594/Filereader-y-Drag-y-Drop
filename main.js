@@ -36,16 +36,6 @@ const cambiarColor = (obj, color, ctxt) => {
   obj.style.color = `${ctxt}`;
 }
 
-//carga el texto en el div con la clase salida
-const cargarTxt = (ar, nombre) => {
-  const leer = new FileReader();
-  leer.readAsText(ar);
-  barProgress(ar);
-  leer.addEventListener("load", (e) => { 
-    let txtData = document.querySelector(".salida").textContent = e.currentTarget.result;
-    mostrarAr(nombre, txtData, ar)
-  })
-}
 window.onload = function () {
   sessionStorage.clear();
 };
@@ -72,10 +62,10 @@ const mostrarAr = (nombre, ar, archivo) => {
           let llave = sessionStorage.key(i);
           if (llave === nombre) {
             console.log("SI:  " + llave);
-            document.getElementsByClassName(`${llave}`)[0].classList.remove("invisible");
+            document.getElementsByClassName(`${llave}`)[0].style.opacity = "1";
           } else{
             console.log("NO:  " + llave);
-            document.getElementsByClassName(`${llave}`)[0].classList.add("invisible");
+            document.getElementsByClassName(`${llave}`)[0].style.opacity = "0";
           }
         }
       } 
@@ -85,6 +75,16 @@ const mostrarAr = (nombre, ar, archivo) => {
   })
 }
 
+//carga el texto en el div con la clase salida
+const cargarTxt = (ar, nombre) => {
+  const leer = new FileReader();
+  leer.readAsText(ar);
+  barProgress(ar);
+  leer.addEventListener("load", (e) => {
+    let txtData = document.querySelector(".salida").textContent = e.currentTarget.result;
+    mostrarAr(nombre, txtData, ar)
+  })
+}
 
 //cargar las imagenes en el div con la clase salida
 const cargarImg = (ar, nombre) => {
