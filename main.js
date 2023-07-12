@@ -86,9 +86,9 @@ const cargarTxt = (ar, nombre) => {
     txtData.innerHTML = e.currentTarget.result;
     console.log(indice)
     if (indice == 1) {
-      let i = 0
-      for (i <= indice; i++) {
-        document.getElementById(`${i - 1}`).style.display = "none"
+      let i = 0;
+      for (i; i <= indice; i++) {
+        document.getElementById(`${i - 1}`).style.display = "none";
       }
     }
     mostrarAr(nombre, txtData, ar)
