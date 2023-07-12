@@ -14,7 +14,7 @@ zona.addEventListener("dragleave", (e) => {
   e.preventDefault();
   cambiarColor(e.target, " #baabfd", "#ddf");
   zona.style.boxShadow = "10px 10px 15px #0003"
-})
+})  
 
 let indice = 0;
 
@@ -25,7 +25,7 @@ zona.addEventListener("drop", (e) => {
   zona.style.boxShadow = "10px 10px 15px #0003"
   const archivo = e.dataTransfer.files[0];
 
-  if (archivo.type === "text/plain")  cargarTxt(archivo, archivo.name)
+  if (archivo.type === "text/plain") cargarTxt(archivo, archivo.name)
   else if (archivo.type === "image/png" || archivo.type === "image/jpeg") cargarImg(archivo, archivo.name); 
   else if (archivo.type === "video/mp4") cargarVideo(archivo, archivo.name);
 })
@@ -40,11 +40,13 @@ window.onload = function () {
   sessionStorage.clear();
 };
 
+
 //muestra el nombre del archivo en una columna, y con una funcion de click en el nombre de algun archivo este se muestra nuevamente en la pantalla
 const mostrarAr = (nombre, ar, archivo) => {
   const listaAr = document.querySelector(".contenido");
   const p = document.createElement("p");
   indice++
+  console.log(`mos: ${indice}`)
   
   p.classList.add(`${indice}`);
   listaAr.appendChild(p);
@@ -54,21 +56,18 @@ const mostrarAr = (nombre, ar, archivo) => {
 
   p.addEventListener("click", () => {
     if (archivo.type === "text/plain") {
-      if (nombre == p.textContent) document.querySelector(".salida").textContent = sessionStorage.getItem(`${nombre}`);
+      
+      //document.querySelector(".salida").innerHTML = sessionStorage.getItem(`${nombre}`);
     }
     else if (archivo.type === "image/png" || archivo.type === "image/jpeg") {
-      if (nombre == p.textContent) {
-        for (let i = 0; i < sessionStorage.length; i++) {
-          let llave = sessionStorage.key(i);
-          if (llave === nombre) {
-            console.log("SI:  " + llave);
-            document.getElementsByClassName(`${llave}`)[0].style.opacity = "1";
-          } else{
-            console.log("NO:  " + llave);
-            document.getElementsByClassName(`${llave}`)[0].style.opacity = "0";
-          }
+      for (let i = 0; i < sessionStorage.length; i++) {
+        let llave = sessionStorage.key(i);
+        if (llave === nombre) {
+          document.getElementsByClassName(`${llave}`)[0].style.opacity = "1";
+        } else{
+          document.getElementsByClassName(`${llave}`)[0].style.opacity = "0";
         }
-      } 
+      }
     }
     else if (archivo.type === "video/mp4") {
     } 
@@ -81,7 +80,17 @@ const cargarTxt = (ar, nombre) => {
   leer.readAsText(ar);
   barProgress(ar);
   leer.addEventListener("load", (e) => {
-    let txtData = document.querySelector(".salida").textContent = e.currentTarget.result;
+    let txtData = document.createElement("p");
+    txtData.setAttribute("id", `${i}`)
+    document.querySelector(".salida").appendChild(txtData)
+    txtData.innerHTML = e.currentTarget.result;
+    console.log(indice)
+    if (indice == 1) {
+      let i = 0
+      for (i <= indice; i++) {
+        document.getElementById(`${i - 1}`).style.display = "none"
+      }
+    }
     mostrarAr(nombre, txtData, ar)
   })
 }
@@ -125,11 +134,8 @@ const barProgress = (obj) => {
   const leer = new FileReader();
   leer.addEventListener("progress", (e) => {
     let carga = Math.round(e.loaded / obj.size * 100);
-    console.log(carga)
     let barra = document.querySelector(".progresoBar");
     barra.style.position = "absolute";
     barra.textContent = `${carga}%`;
-  })
-  
-  
+  }) 
 }

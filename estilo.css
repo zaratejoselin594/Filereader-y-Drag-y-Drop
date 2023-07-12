@@ -10,7 +10,7 @@ body{ background-color: #459; }
   width: 17%;
   margin: 20px;
   text-align: center;
-  justify-content: center;
+  justify-content: center; 
 }
 .salida, .zona-arrastre{
   display: flex;
