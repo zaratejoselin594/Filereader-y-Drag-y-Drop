@@ -46,9 +46,8 @@ const mostrarAr = (nombre, ar, archivo) => {
   const listaAr = document.querySelector(".contenido");
   const p = document.createElement("p");
   indice++
-  console.log(`mos: ${indice}`)
   
-  p.classList.add(`${indice}`);
+  p.setAttribute("class",`${indice}`);
   listaAr.appendChild(p);
   p.textContent = `${nombre}`;
   sessionStorage.setItem(`${nombre}`, `${ar}`);
@@ -56,8 +55,15 @@ const mostrarAr = (nombre, ar, archivo) => {
 
   p.addEventListener("click", () => {
     if (archivo.type === "text/plain") {
-      
       //document.querySelector(".salida").innerHTML = sessionStorage.getItem(`${nombre}`);
+      for (let i = 0; i < sessionStorage.length; i++) {
+        let llave = sessionStorage.key(i);
+        if (llave === nombre) {
+          document.getElementsByClassName(`${llave}`)[0].style.opacity = "1";
+        } else {
+          document.getElementsByClassName(`${llave}`)[0].style.opacity = "0";
+        }
+      }
     }
     else if (archivo.type === "image/png" || archivo.type === "image/jpeg") {
       for (let i = 0; i < sessionStorage.length; i++) {
@@ -74,39 +80,46 @@ const mostrarAr = (nombre, ar, archivo) => {
   })
 }
 
+// cada archivo anterior, desaparece
+const desaparecer = (obj) => {
+  let i = 0;
+  for (i; i <= indice; i++) {
+    obj.setAttribute("id", `${i}`)
+    if (i >= 1) {
+      document.getElementById(`${i - 1}`).style.opacity = "0";
+    }
+  }
+}
 //carga el texto en el div con la clase salida
 const cargarTxt = (ar, nombre) => {
   const leer = new FileReader();
   leer.readAsText(ar);
   barProgress(ar);
   leer.addEventListener("load", (e) => {
+    //let txtDataa = document.querySelector(".salida").innerHTML = e.currentTarget.result
     let txtData = document.createElement("p");
-    txtData.setAttribute("id", `${i}`)
+    desaparecer(txtData)
+    txtData.setAttribute("class", `${nombre}`)
     document.querySelector(".salida").appendChild(txtData)
     txtData.innerHTML = e.currentTarget.result;
-    console.log(indice)
-    if (indice == 1) {
-      let i = 0;
-      for (i; i <= indice; i++) {
-        document.getElementById(`${i - 1}`).style.display = "none";
-      }
-    }
     mostrarAr(nombre, txtData, ar)
   })
 }
 
 //cargar las imagenes en el div con la clase salida
 const cargarImg = (ar, nombre) => {
+  let index = 1;
   const leer = new FileReader();
   leer.readAsDataURL(ar);
   barProgress(ar)
   leer.addEventListener("load", (e) => {
-    let url = URL.createObjectURL(ar);
-    mostrarAr(nombre, url, ar);
     let IMG = document.createElement("IMG");
+    desaparecer(IMG)
+    let url = URL.createObjectURL(ar);
     IMG.setAttribute("src", url);
-    IMG.classList.add(`${nombre}`)
+    IMG.setAttribute("class",`${nombre}`)
     document.querySelector(".salida").appendChild(IMG);
+    mostrarAr(nombre, url, ar);
   })   
 }
 
