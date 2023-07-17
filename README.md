@@ -1,8 +1,12 @@
 # Filereader-y-Drag-y-Drop
-¡Bienvenido/a a mi repositorio de GitHub! En este proyecto, se ha creado una aplicación web utilizando las API de FileReader y Drag and Drop. La función principal de la aplicación es leer archivos y mostrarlos en pantalla. Hay un panel donde puedes ver los archivos leídos y hacer clic para mostrarlos nuevamente en pantalla. Es importante tener en cuenta que, después de reiniciar la web, los archivos son eliminados.
+¡Bienvenido/a a mi repositorio de GitHub! En este proyecto, he creado una aplicación web utilizando las API de FileReader y Drag and Drop. 
 
-La aplicación funciona a través de la lectura de archivos que se arrastran desde la carpeta de archivos en tu computadora. La aplicación ha sido desarrollada con HTML, CSS y JavaScript.
+La función principal de la aplicación es leer archivos y mostrarlos en pantalla. 
 
-¡Espero que encuentres útil esta herramienta y gracias por visitar mi repositorio en GitHub!
+La aplicación funciona al arrastrar archivos directamente desde la carpeta de archivos de tu computadora y soltar dentro de la seccion de "Arrastrar Aquí El Archivo". 
+
+Hay un panel que es la seccion de "Archivos abiertos" donde se pueden visualizar los archivos que fueron leídos y al hacer click en algun archivo se muestran nuevamente en la pantalla. Es importante tener en cuenta que, después de reiniciar la web, los archivos son eliminados.
+
 
 A continuacion una imagen de la web:
+![image](https://github.com/zaratejoselin594/Filereader-y-Drag-y-Drop/assets/128331810/3228274b-57d7-4d56-b929-b04ee4092e61)
