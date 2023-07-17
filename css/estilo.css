@@ -74,12 +74,13 @@ h3{ margin-top: 35px; }
   overflow: hidden;
   z-index: -3;
 }
-.salida p, img, video{
+.salida p,.salida video,.salida img{
+  position: absolute;
   width: 100%;
   height: auto;
   object-position: center;
   object-fit: scale-down;
-  position: absolute;
+
 }
 .loader{
   position: absolute;

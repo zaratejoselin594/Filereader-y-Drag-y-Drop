@@ -5,11 +5,11 @@ const zona = document.querySelector(".zona-arrastre");
 //identificar si algun obj se encuentra dentro de la zona
 zona.addEventListener("dragover", (e) => {
   e.preventDefault();
-  cambiarColor(e.target, "#ff57", "#ddf5");
+  cambiarColor(e.target, "#fc53ff", "#ddf5");
   zona.style.boxShadow ="-10px -10px 15px #0003"
 })
 
-//indentificaar si el oobj se aleja
+//indentificar si el obj se aleja
 zona.addEventListener("dragleave", (e) => {
   e.preventDefault();
   cambiarColor(e.target, " #baabfd", "#ddf");
@@ -123,7 +123,7 @@ const cargarImg = (ar, nombre) => {
   })   
 }
 
-//muestra el video e el div con la clase salida
+//muestra el video en el div con la clase salida
 const cargarVideo = (ar, nombre) => {
   const leer = new FileReader();
   leer.readAsArrayBuffer(ar);
@@ -139,6 +139,7 @@ const cargarVideo = (ar, nombre) => {
     document.querySelector(".salida").appendChild(videoPlay);
     mostrarAr(nombre, url, ar)
     videoPlay.play()
+    videoPlay.setAttribute("controls", "on")
   })
 }
 
