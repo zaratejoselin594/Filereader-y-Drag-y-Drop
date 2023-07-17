@@ -33,6 +33,9 @@ body{ background-color: #459; }
   box-shadow: #3333 10px 10px 15px;
   transition: border .6s, box-shadow .7s;
 }
+.zona-arrastre ion-icon{
+  z-index: -2;
+}
 .archivos{
   text-align: center;
   width: 83%;
@@ -40,12 +43,13 @@ body{ background-color: #459; }
 }
 .info{
   position: absolute;
-  right: 10px;
+  right: 15px;
   margin: 20px;
   padding: 7px;
   font-size: 25px;
   background-color: #aaf5;
   border-radius: 50%;
+  cursor: pointer;
 }
 h3{ margin-top: 35px; }
 .ar{
