@@ -43,7 +43,7 @@ window.onload = function () {
 
 //muestra el nombre del archivo en una columna, y con una funcion de click en el nombre de algun archivo este se muestra nuevamente en la pantalla
 const mostrarAr = (nombre, ar, archivo) => {
-  const listaAr = document.querySelector(".contenido");
+  const listaAr = document.querySelector(".ar");
   const p = document.createElement("p");
   indice++
   

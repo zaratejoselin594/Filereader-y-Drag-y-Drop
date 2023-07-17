@@ -7,31 +7,50 @@
 }
 body{ background-color: #459; }
 .contenedor{
-  width: 17%;
-  margin: 20px;
-  text-align: center;
-  justify-content: center; 
+  width: 100%;
+  height: 100vh;
 }
-.salida, .zona-arrastre{
+.salida, .zona-arrastre, .contenedor{
   display: flex;
   justify-content: center;
   align-items: center;
 }
+.contenido{
+  width: 20%;
+  margin: 20px;
+  text-align: center;
+  justify-content: center; 
+}
 .zona-arrastre{
-  width: 94%;
-  height: 120px;
+  width: 80%;
+  height: 8em;
+  flex-direction: column;
   border: 4px dashed #baabfd;
   border-radius: 5px;
   margin-bottom: 10px;
   font-size: 17px;
   background-color: #bbf5;
-  box-shadow: #0003 10px 10px 15px;
+  box-shadow: #3333 10px 10px 15px;
   transition: border .6s, box-shadow .7s;
 }
-h3{ margin-top: 35px; }
-.contenido{
-  width: 250px;
+.archivos{
+  text-align: center;
+  width: 83%;
   height: 32rem;
+}
+.info{
+  position: absolute;
+  right: 10px;
+  margin: 20px;
+  padding: 7px;
+  font-size: 25px;
+  background-color: #aaf5;
+  border-radius: 50%;
+}
+h3{ margin-top: 35px; }
+.ar{
+  width: 100%;
+  height: 86%;
   overflow: hidden;
   border-radius: 10px;
   margin-top: 1em;
@@ -39,35 +58,24 @@ h3{ margin-top: 35px; }
   box-shadow: #0003 10px 10px 15px;
   transition: box-shadow .7s;
 }
-.zona-arrastre:hover, .contenido:hover{ box-shadow: #0003 -10px -10px 15px; }
+.zona-arrastre:hover, .ar:hover{ box-shadow: #0003 -10px -10px 15px; }
 .salida{
-  position: absolute;
-  width: 79%;
-  height: 94%;
-  margin: 22px;
+  width: 75%;
+  height: 80%;
+  position: relative;
   border: #ddf4 3px solid;
   background-color: #ddf3;
   border-radius: 15px;
-  top: 0px;
-  right: 0px;
   transition: border .6s;
   overflow: hidden;
   z-index: -3;
 }
-.txtData, img, video{
+.salida p, img, video{
   width: 100%;
   height: auto;
+  object-position: center;
+  object-fit: scale-down;
   position: absolute;
-}
-img{
-  object-position: center;
-  object-fit: scale-down;
-  opacity: 1;
-}
-video{
-  object-position: center;
-  object-fit: scale-down;
-  opacity: 1;
 }
 .loader{
   position: absolute;
@@ -76,10 +84,7 @@ video{
   height: 300px;
   opacity: 0;
 }
-.salida p {
-  position: absolute;
-}
-.contenido p{
+.ar p{
   cursor: pointer;
   margin: 5px;  
   padding: 5px;
@@ -87,5 +92,5 @@ video{
   border-radius: 5px;
   transition: background-color .6s;
 }
-.contenido p:hover{ background-color: #fff4; }
+.ar p:hover{ background-color: #fff4; }
 

@@ -8,18 +8,23 @@
   <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
-  <div class="contenedor">  
-    <div class="zona-arrastre">Arrastrar Aquí El Archivo</div>
-    <div class="progresoBar" style="left: 125px;"></div>    
-    <div class="archivos">
-      <h3>Archivos abiertos</h3>
-      <div class="contenido">
-       
+  <ion-icon name="help-outline" class="info"></ion-icon>
+  <div class="contenedor">
+    <div class="contenido">  
+      <div class="zona-arrastre">
+        Arrastrar Aquí El Archivo 
+        <ion-icon name="folder-outline" class="iconAr"></ion-icon>
+      </div>
+      <div class="progresoBar" style="left: 125px;"></div>
+      <div class="archivos">
+        <h3>Archivos abiertos</h3>
+        <div class="ar"></div>
       </div>
     </div>
+    <div class="salida"></div>
   </div>
-  <div class="salida">
-  </div>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script src="main.js"></script>
   </body>
 </html>
