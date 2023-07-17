@@ -13,24 +13,39 @@
   align-items: center;
   background-color: #1c2f68c7
 }
+.contenidoMasInfo::-webkit-scrollbar {
+  width: 10px;
+}
+.contenidoMasInfo::-webkit-scrollbar-track {
+  border-radius: 7px;
+  background: #333;
+}
+.contenidoMasInfo::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 20px;
+}
 .contenidoMasInfo{
   width: 60%;
   height: 70%;
   border-radius: .5em;
   background-color: #333;
+  overflow-y: scroll;
 }
 .contenidoMasInfo h2{
   font-family: 'Indie Flower', cursive;
   color: #fff;
-  font-weight: 200;
+  font-weight: 400;
 }
 .contenidoMasInfo div{
   line-height: 1.8;
-  margin: 4em;
+  margin: 3.5em;
+}
+.contenidoMasInfo span {
+  text-decoration: rgb(140, 68, 255) wavy underline;
 }
 .equis{
   position: absolute;
-  margin: 20px;
+  margin: 15px;
   color: #fff;
   font-size: 2em;
   cursor: pointer;
@@ -39,4 +54,8 @@
   margin: 20px;
   color: #fff;
   font-size: 4em;
+}
+img{
+  position: relative;
+  width: 15em;
 }
