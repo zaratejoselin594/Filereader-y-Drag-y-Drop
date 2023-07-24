@@ -1,28 +1,24 @@
-
-//llamar a la zona que recibe el evento
+// Llamar a la zona que recibe el evento
 const zona = document.querySelector(".zona-arrastre");
 
-//identificar si algun obj se encuentra dentro de la zona
+// Identificar si algun obj se encuentra dentro de la zona
 zona.addEventListener("dragover", (e) => {
   e.preventDefault();
   cambiarColor(e.target, "#fc53ff", "#ddf5");
-  zona.style.boxShadow ="-10px -10px 15px #0003"
 })
 
-//indentificar si el obj se aleja
+// Indentificar si el obj se aleja
 zona.addEventListener("dragleave", (e) => {
   e.preventDefault();
   cambiarColor(e.target, " #baabfd", "#ddf");
-  zona.style.boxShadow = "10px 10px 15px #0003"
 })  
 
 let indice = 0;
 
-//indica si el obj se solto dentro de la zona
+// Indica si el obj se solto dentro de la zona
 zona.addEventListener("drop", (e) => {
   cambiarColor(e.target, " #baabfd", "#ddf")
   e.preventDefault();
-  zona.style.boxShadow = "10px 10px 15px #0003"
   const archivo = e.dataTransfer.files[0];
 
   if (archivo.type === "text/plain") cargarTxt(archivo, archivo.name)
@@ -36,7 +32,8 @@ const cambiarColor = (obj, color, ctxt) => {
   obj.style.color = `${ctxt}`;
 }
 
-window.onload = function () {
+//Limpiamos la sessioStorage cada vez que se cargue la pagina
+window.onload = () => {
   sessionStorage.clear();
 };
 
@@ -56,32 +53,33 @@ const mostrarAr = (nombre, ar, archivo) => {
   p.addEventListener("click", () => {
     if (archivo.type === "text/plain") {
       //document.querySelector(".salida").innerHTML = sessionStorage.getItem(`${nombre}`);
-      for (let i = 0; i < sessionStorage.length; i++) {
-        let llave = sessionStorage.key(i);
-        if (llave === nombre) {
-          document.getElementsByClassName(`${llave}`)[0].style.opacity = "1";
-        } else {
-          document.getElementsByClassName(`${llave}`)[0].style.opacity = "0";
-        }
+      reaparecerAr(nombre)
+      if (p.textContent === `${llave}`) {
+        console.log("si")
       }
     }
     else if (archivo.type === "image/png" || archivo.type === "image/jpeg") {
-      for (let i = 0; i < sessionStorage.length; i++) {
-        let llave = sessionStorage.key(i);
-        if (llave === nombre) {
-          document.getElementsByClassName(`${llave}`)[0].style.opacity = "1";
-        } else{
-          document.getElementsByClassName(`${llave}`)[0].style.opacity = "0";
-        }
-      }
+      reaparecerAr(nombre)
     }
     else if (archivo.type === "video/mp4") {
     } 
   })
 }
 
+//Mostrar nuevamente el archivo en pantalla
+const reaparecerAr = (nombre) => {
+  for (let i = 0; i < sessionStorage.length; i++) {
+    let llave = sessionStorage.key(i);
+    if (llave === nombre) {
+      document.getElementsByClassName(`${llave}`)[0].style.opacity = "1";
+    } else {
+      document.getElementsByClassName(`${llave}`)[0].style.opacity = "0";
+    }
+  }
+}
+
 // cada archivo anterior, desaparece
-const desaparecer = (obj) => {
+const desaparecerAr = (obj) => {
   let i = 0;
   for (i; i <= indice; i++) {
     obj.setAttribute("id", `${i}`)
@@ -98,7 +96,7 @@ const cargarTxt = (ar, nombre) => {
   leer.addEventListener("load", (e) => {
     //let txtDataa = document.querySelector(".salida").innerHTML = e.currentTarget.result
     let txtData = document.createElement("p");
-    desaparecer(txtData)
+    desaparecerAr(txtData)
     txtData.setAttribute("class", `${nombre}`)
     document.querySelector(".salida").appendChild(txtData)
     txtData.innerHTML = e.currentTarget.result;
@@ -114,7 +112,7 @@ const cargarImg = (ar, nombre) => {
   barProgress(ar)
   leer.addEventListener("load", (e) => {
     let IMG = document.createElement("IMG");
-    desaparecer(IMG)
+    desaparecerAr(IMG)
     let url = URL.createObjectURL(ar);
     IMG.setAttribute("src", url);
     IMG.setAttribute("class",`${nombre}`)
