@@ -26,19 +26,19 @@ zona.addEventListener("drop", (e) => {
   else if (archivo.type === "video/mp4") cargarVideo(archivo, archivo.name);
 })
 
-//cambiar colores para provocar impacto visual
+// Cambiar colores para provocar impacto visual
 const cambiarColor = (obj, color, ctxt) => {
   obj.style.border = `${color} dashed 4px`;
   obj.style.color = `${ctxt}`;
 }
 
-//Limpiamos la sessioStorage cada vez que se cargue la pagina
+// Limpiamos la sessioStorage cada vez que se cargue la pagina
 window.onload = () => {
   sessionStorage.clear();
 };
 
 
-//muestra el nombre del archivo en una columna, y con una funcion de click en el nombre de algun archivo este se muestra nuevamente en la pantalla
+// Muestra el nombre del archivo en una columna, agregamos escucha al evento click en el nombre de algun archivo, este se muestra nuevamente en la pantalla
 const mostrarAr = (nombre, ar, archivo) => {
   const listaAr = document.querySelector(".ar");
   const p = document.createElement("p");
@@ -66,7 +66,7 @@ const mostrarAr = (nombre, ar, archivo) => {
   })
 }
 
-//Mostrar nuevamente el archivo en pantalla
+// Mostrar nuevamente el archivo en pantalla
 const reaparecerAr = (nombre) => {
   for (let i = 0; i < sessionStorage.length; i++) {
     let llave = sessionStorage.key(i);
@@ -78,7 +78,7 @@ const reaparecerAr = (nombre) => {
   }
 }
 
-// cada archivo anterior, desaparece
+// Cada archivo anterior, desaparece
 const desaparecerAr = (obj) => {
   let i = 0;
   for (i; i <= indice; i++) {
@@ -88,7 +88,8 @@ const desaparecerAr = (obj) => {
     }
   }
 }
-//carga el texto en el div con la clase salida
+
+// Carga el texto en el div con la clase salida
 const cargarTxt = (ar, nombre) => {
   const leer = new FileReader();
   leer.readAsText(ar);
@@ -104,7 +105,7 @@ const cargarTxt = (ar, nombre) => {
   })
 }
 
-//cargar las imagenes en el div con la clase salida
+// Cargar las imagenes en el div con la clase salida
 const cargarImg = (ar, nombre) => {
   let index = 1;
   const leer = new FileReader();
@@ -121,7 +122,7 @@ const cargarImg = (ar, nombre) => {
   })   
 }
 
-//muestra el video en el div con la clase salida
+// Muestra el video en el div con la clase salida
 const cargarVideo = (ar, nombre) => {
   const leer = new FileReader();
   leer.readAsArrayBuffer(ar);
@@ -141,7 +142,7 @@ const cargarVideo = (ar, nombre) => {
   })
 }
 
-//barra de progreso si se muestra tiempo de espera
+// Barra de progreso si se muestra tiempo de espera
 const barProgress = (obj) => {
   const leer = new FileReader();
   leer.addEventListener("progress", (e) => {
