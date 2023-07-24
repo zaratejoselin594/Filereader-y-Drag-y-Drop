@@ -13,7 +13,6 @@ zona.addEventListener("dragleave", (e) => {
   cambiarColor(e.target, " #baabfd", "#ddf");
 })  
 
-let indice = 0;
 
 // Indica si el obj se solto dentro de la zona
 zona.addEventListener("drop", (e) => {
@@ -39,6 +38,7 @@ window.onload = () => {
 
 
 // Muestra el nombre del archivo en una columna, agregamos escucha al evento click en el nombre de algun archivo, este se muestra nuevamente en la pantalla
+let indice = 0;
 const mostrarAr = (nombre, ar, archivo) => {
   const listaAr = document.querySelector(".ar");
   const p = document.createElement("p");
@@ -54,9 +54,6 @@ const mostrarAr = (nombre, ar, archivo) => {
     if (archivo.type === "text/plain") {
       //document.querySelector(".salida").innerHTML = sessionStorage.getItem(`${nombre}`);
       reaparecerAr(nombre)
-      if (p.textContent === `${llave}`) {
-        console.log("si")
-      }
     }
     else if (archivo.type === "image/png" || archivo.type === "image/jpeg") {
       reaparecerAr(nombre)
@@ -69,11 +66,14 @@ const mostrarAr = (nombre, ar, archivo) => {
 // Mostrar nuevamente el archivo en pantalla
 const reaparecerAr = (nombre) => {
   for (let i = 0; i < sessionStorage.length; i++) {
+    console.log(i+1)
     let llave = sessionStorage.key(i);
     if (llave === nombre) {
       document.getElementsByClassName(`${llave}`)[0].style.opacity = "1";
+      document.getElementsByClassName(`${i+1}`)[0].backgroundColor = "#fff5";
     } else {
       document.getElementsByClassName(`${llave}`)[0].style.opacity = "0";
+      document.getElementsByClassName(`${i+1}`)[0].backgroundColor = "#fff2";
     }
   }
 }
@@ -107,7 +107,6 @@ const cargarTxt = (ar, nombre) => {
 
 // Cargar las imagenes en el div con la clase salida
 const cargarImg = (ar, nombre) => {
-  let index = 1;
   const leer = new FileReader();
   leer.readAsDataURL(ar);
   barProgress(ar)
