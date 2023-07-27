@@ -44,7 +44,8 @@ const mostrarAr = (nombre, ar, archivo) => {
   const p = document.createElement("p");
   indice++
   
-  p.setAttribute("class",`${indice}`);
+  p.setAttribute("class", `${indice}`);
+  p.setAttribute("id", `${nombre}`);
   listaAr.appendChild(p);
   p.textContent = `${nombre}`;
   sessionStorage.setItem(`${nombre}`, `${ar}`);
@@ -66,15 +67,14 @@ const mostrarAr = (nombre, ar, archivo) => {
 // Mostrar nuevamente el archivo en pantalla
 const reaparecerAr = (nombre) => {
   for (let i = 0; i < sessionStorage.length; i++) {
-    console.log(i+1)
     let llave = sessionStorage.key(i);
     if (llave === nombre) {
       document.getElementsByClassName(`${llave}`)[0].style.opacity = "1";
-      document.getElementsByClassName(`${i+1}`)[0].backgroundColor = "#fff5";
+      document.getElementById(`${llave}`).style.backgroundColor = "#fff5";
     } else {
       document.getElementsByClassName(`${llave}`)[0].style.opacity = "0";
-      document.getElementsByClassName(`${i+1}`)[0].backgroundColor = "#fff2";
-    }
+      document.getElementById(`${llave}`).style.backgroundColor = "#fff2";
+    } 
   }
 }
 
