@@ -19,10 +19,21 @@ zona.addEventListener("drop", (e) => {
   cambiarColor(e.target, " #baabfd", "#ddf")
   e.preventDefault();
   const archivo = e.dataTransfer.files[0];
-
-  if (archivo.type === "text/plain") cargarTxt(archivo, archivo.name);
-  else if (archivo.type === "image/png" || archivo.type === "image/jpeg") cargarImg(archivo, archivo.name); 
-  else if (archivo.type === "video/mp4") cargarVideo(archivo, archivo.name);
+  
+  if (archivo.type === "text/plain") {
+    for (let i = 0; i < indice; i++) {
+      cargarTxt(archivo, archivo.name)
+    }
+  } else if (archivo.type === "image/png" || archivo.type === "image/jpeg") {
+    for (let i = 0; i < indice; i++) {
+      cargarImg(archivo, archivo.name)
+    }
+  }
+  else if (archivo.type === "video/mp4") {
+    for (let i = 0; i < indice; i++) {
+      cargarVideo(archivo, archivo.name)
+    }
+  }
 })
 
 // Cambiar colores para provocar impacto visual
@@ -43,13 +54,15 @@ const mostrarAr = (nombre, ar, archivo) => {
   const listaAr = document.querySelector(".ar");
   const p = document.createElement("p");
   indice++
-  
+
+  // Agregarle una clase y id como identificador unico
   p.setAttribute("class", `${indice}`);
   p.setAttribute("id", `${nombre}`);
   listaAr.appendChild(p);
   p.textContent = `${nombre}`;
   sessionStorage.setItem(`${nombre}`, `${ar}`);
   sessionStorage.removeItem('IsThisFirstTime_Log_From_LiveServer');
+  
   reaparecerAr(nombre)
   p.addEventListener("click", () => {
     if (archivo.type === "text/plain") {
