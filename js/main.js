@@ -37,7 +37,7 @@ window.onload = () => {
 };
 
 
-// Muestra el nombre del archivo en una columna, agregamos escucha al evento click en el nombre de algun archivo, este se muestra nuevamente en la pantalla
+// Muestra el nombre del archivo en una columna, agregamos escucha al evento click en el nombre del archivo seleccionado, este archivo se muestra nuevamente en la pantalla
 let indice = 0;
 const mostrarAr = (nombre, ar, archivo) => {
   const listaAr = document.querySelector(".ar");
