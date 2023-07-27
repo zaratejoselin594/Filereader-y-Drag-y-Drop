@@ -50,7 +50,7 @@ const mostrarAr = (nombre, ar, archivo) => {
   p.textContent = `${nombre}`;
   sessionStorage.setItem(`${nombre}`, `${ar}`);
   sessionStorage.removeItem('IsThisFirstTime_Log_From_LiveServer');
-
+  reaparecerAr(nombre)
   p.addEventListener("click", () => {
     if (archivo.type === "text/plain") {
       //document.querySelector(".salida").innerHTML = sessionStorage.getItem(`${nombre}`);
@@ -70,10 +70,13 @@ const reaparecerAr = (nombre) => {
     let llave = sessionStorage.key(i);
     if (llave === nombre) {
       document.getElementsByClassName(`${llave}`)[0].style.opacity = "1";
-      document.getElementById(`${llave}`).style.backgroundColor = "#fff5";
+      document.getElementById(`${llave}`).style.backgroundColor = "#853ba2";
+      document.getElementById(`${llave}`).style.width = "90%";
     } else {
       document.getElementsByClassName(`${llave}`)[0].style.opacity = "0";
-      document.getElementById(`${llave}`).style.backgroundColor = "#fff2";
+      document.getElementById(`${llave}`).style.backgroundColor = "#349";
+      document.getElementById(`${llave}`).style.width = "80%";
+
     } 
   }
 }

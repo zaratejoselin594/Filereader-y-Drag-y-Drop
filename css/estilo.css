@@ -47,7 +47,7 @@ body{ background-color: #459; }
   margin: 20px;
   padding: 7px;
   font-size: 25px;
-  background-color: #aaf5;
+  background-color: #040855;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -58,7 +58,7 @@ h3{ margin-top: 35px; }
   overflow: hidden;
   border-radius: 10px;
   margin-top: 1em;
-  background-color: #444;
+  background-color: #040855;
   box-shadow: #3335 5px 5px 15px;
   transition: box-shadow .7s;
 }
@@ -90,11 +90,17 @@ h3{ margin-top: 35px; }
 }
 .ar p{
   cursor: pointer;
-  margin: 5px;  
+  margin: 5px;
   padding: 5px;
-  background-color: #fff2;
+  width: 80%;
+  background-color: #349;
   border-radius: 5px;
-  transition: background-color .6s;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  transition: background-color .6s, width .6s;
 }
-.ar p:hover{ background-color: #fff5; }
+.ar p:hover{ 
+  background-color: #853ba2;
+  width: 90%; 
+}
 
