@@ -20,7 +20,7 @@ zona.addEventListener("drop", (e) => {
   e.preventDefault();
   const archivo = e.dataTransfer.files[0];
 
-  if (archivo.type === "text/plain") cargarTxt(archivo, archivo.name)
+  if (archivo.type === "text/plain") cargarTxt(archivo, archivo.name);
   else if (archivo.type === "image/png" || archivo.type === "image/jpeg") cargarImg(archivo, archivo.name); 
   else if (archivo.type === "video/mp4") cargarVideo(archivo, archivo.name);
 })
@@ -141,7 +141,7 @@ const cargarVideo = (ar, nombre) => {
   })
 }
 
-// Barra de progreso si se muestra tiempo de espera
+// Barra de progreso se muestra tiempo de carga del archivo
 const barProgress = (obj) => {
   const leer = new FileReader();
   leer.addEventListener("progress", (e) => {
