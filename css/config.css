@@ -1,17 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@100;300;400&display=swap');
-* {
+*{
   margin: 0;
   padding: 0;
   font-family: 'M PLUS 2', sans-serif;
 }
-.info {
+.tema {
   position: absolute;
-  right: 2em;
-  margin: 15px;
-  font-size: 40px;
+  right: 15px;
+  margin: 20px;
+  font-size: 30px;
   cursor: pointer;
 }
-.masInfo{
+.divtema {
   position: fixed;
   width: 100%;
   height: 100vh;
@@ -21,18 +21,22 @@
   background-color: #1c2f68c7;
   z-index: 8;
 }
-.contenidoMasInfo::-webkit-scrollbar {
+
+.contenidoTema::-webkit-scrollbar {
   width: 10px;
 }
-.contenidoMasInfo::-webkit-scrollbar-track {
+
+.contenidoTema::-webkit-scrollbar-track {
   border-radius: 7px;
   background: #333;
 }
-.contenidoMasInfo::-webkit-scrollbar-thumb {
+
+.contenidoTema::-webkit-scrollbar-thumb {
   background-color: #555;
   border-radius: 20px;
 }
-.contenidoMasInfo{
+
+.contenidoTema {
   width: 60%;
   height: 70%;
   border-radius: .5em;
@@ -40,31 +44,31 @@
   overflow-y: scroll;
   z-index: 10;
 }
-.contenidoMasInfo h2{
+
+.contenidoTema h2 {
   font-family: 'Indie Flower', cursive;
   color: #fff;
   font-weight: 400;
 }
-.contenidoMasInfo div{
+
+.contenidoTema div {
   line-height: 1.8;
   margin: 3.5em;
 }
-.contenidoMasInfo span {
+
+.contenidoTema span {
   text-decoration: rgb(140, 68, 255) wavy underline;
 }
-.equis{
+
+.equis {
   position: absolute;
   margin: 15px;
   color: #fff;
   font-size: 2em;
   cursor: pointer;
 }
-.github{
-  margin: 20px;
-  color: #fff;
-  font-size: 4em;
-}
-img{
+
+img {
   position: relative;
   width: 15em;
 }

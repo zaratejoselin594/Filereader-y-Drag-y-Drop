@@ -7,12 +7,13 @@
   <title>FileReader y Drag & Drop</title>
   <link rel="stylesheet" href="./css/estilo.css">
   <link rel="stylesheet" href="./css/info.css">
+  <link rel="stylesheet" href="./css/config.css">
 </head>
 <body>
-  <ion-icon name="help-outline" class="info"></ion-icon>
+  <ion-icon name="help-circle" class="info" title="MasInfo"></ion-icon>
   <div style="display: none;" class="masInfo">
     <div class="contenidoMasInfo">
-      <ion-icon name="close-circle-outline" class="equis"></ion-icon>
+      <ion-icon name="close-circle" class="equis"></ion-icon>
       <div>
         <h2>¿Cuál es la funcion de esta pagina?</h2>
         <p>Es una aplicación web en la cual su función principal es <span>leer archivos
@@ -30,11 +31,20 @@
       </div>
     </div>
   </div>
+  <ion-icon name="brush" class="tema" title="Tema"></ion-icon>
+  <div style="display: none;" class="divtema">
+    <div class="contenidoTema">
+      <ion-icon name="close-circle" class="equis"></ion-icon>
+      <div>
+       
+      </div>
+    </div>
+  </div>
   <div class="contenedor">
     <div class="contenido">  
       <div class="zona-arrastre">
         Arrastrar Aquí El Archivo 
-        <ion-icon name="folder-outline" class="iconAr"></ion-icon>
+        <ion-icon name="folder" class="iconAr"></ion-icon>
       </div>
       <div class="progresoBar" style="left: 125px;"></div>
       <div class="archivos">

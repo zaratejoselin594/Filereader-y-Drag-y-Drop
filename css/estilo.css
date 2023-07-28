@@ -41,16 +41,6 @@ body{ background-color: #459; }
   width: 83%;
   height: 32rem;
 }
-.info{
-  position: absolute;
-  right: 15px;
-  margin: 20px;
-  padding: 7px;
-  font-size: 25px;
-  background-color: #040855;
-  border-radius: 50%;
-  cursor: pointer;
-}
 h3{ margin-top: 35px; }
 .ar{
   width: 100%;
