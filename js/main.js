@@ -13,7 +13,6 @@ zona.addEventListener("dragleave", (e) => {
   cambiarColor(e.target, " #baabfd", "#ddf");
 })  
 
-
 // Indica si el obj se solto dentro de la zona
 zona.addEventListener("drop", (e) => {
   cambiarColor(e.target, " #baabfd", "#ddf")
@@ -47,7 +46,7 @@ const leerArs = (funcion, ars, ar) => {
   } else funcion(ar, ar.name)
 }
 
-// Muestra el nombre del archivo en una columna, agregamos escucha al evento click en el nombre del archivo seleccionado, este archivo se muestra nuevamente en la pantalla
+// Muestra el nombre del archivo en una columna, click en el nombre del archivo seleccionado, este archivo se muestra nuevamente en la pantalla
 let indice = 0;
 const mostrarAr = (nombre, ar, archivo) => {
   const listaAr = document.querySelector(".ar");
@@ -57,22 +56,19 @@ const mostrarAr = (nombre, ar, archivo) => {
   // Agregarle una clase y id como identificador unico
   p.setAttribute("class", `${indice}`);
   p.setAttribute("id", `${nombre}`);
+
   listaAr.appendChild(p);
   p.textContent = `${nombre}`;
+
   sessionStorage.setItem(`${nombre}`, `${ar}`);
   sessionStorage.removeItem('IsThisFirstTime_Log_From_LiveServer');
   
   reaparecerAr(nombre)
+
   p.addEventListener("click", () => {
-    if (archivo.type === "text/plain") {
-      //document.querySelector(".salida").innerHTML = sessionStorage.getItem(`${nombre}`);
-      reaparecerAr(nombre)
-    }
-    else if (archivo.type === "image/png" || archivo.type === "image/jpeg") {
-      reaparecerAr(nombre)
-    }
-    else if (archivo.type === "video/mp4") {
-    } 
+    if (archivo.type === "text/plain") reaparecerAr(nombre);
+    else if (archivo.type === "image/png" || archivo.type === "image/jpeg") reaparecerAr(nombre);
+    else if (archivo.type === "video/mp4") reaparecerAr(nombre);
   })
 }
 
@@ -93,7 +89,7 @@ const reaparecerAr = (nombre) => {
   }
 }
 
-// Cada archivo anterior, desaparece
+// Cada archivo anterior desaparece
 const desaparecerAr = (obj) => {
   let i = 0;
   for (i; i <= indice; i++) {
