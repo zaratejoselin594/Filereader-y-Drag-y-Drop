@@ -27,16 +27,17 @@ const predeterminado = {
   5: "#853ba2"
 }
 const c = document.querySelectorAll(".c");
+const btn = document.getElementById("guardarCombinacion")
+let index = 0;
 
 const guardarColor = (...color) => {
   for (let i = 0; i < color.length; i++){
+    index++
     color[i].value = predeterminado[i]
     c[i].style.backgroundColor = `${predeterminado[i]}`
-    console.log(predeterminado[i])
-    color[i].addEventListener("input", ()=> {
-      localStorage.setItem(`${i}`, `${color[i].value}`)
+    btn.addEventListener("click", () => {
+      localStorage.setItem(`${index}`, `${color[i].value}`)
       fondo.style.backgroundColor = `${localStorage.getItem("0")}`
-      
     })
   }
 }
