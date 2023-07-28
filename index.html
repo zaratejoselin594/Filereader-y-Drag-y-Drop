@@ -7,7 +7,7 @@
   <title>FileReader y Drag & Drop</title>
   <link rel="stylesheet" href="./css/estilo.css">
   <link rel="stylesheet" href="./css/info.css">
-  <link rel="stylesheet" href="./css/config.css">
+  <link rel="stylesheet" href="./css/temas.css">
 </head>
 <body>
   <ion-icon name="help-circle" class="info" title="MasInfo"></ion-icon>
@@ -15,8 +15,9 @@
     <div class="contenidoMasInfo">
       <ion-icon name="close-circle" class="equis"></ion-icon>
       <div>
+        <h1>Información</h1>
         <h2>¿Cuál es la funcion de esta pagina?</h2>
-        <p>Es una aplicación web en la cual su función principal es <span>leer archivos
+        <p>Es una aplicación web en la cual su función principal es <span>leer archivos 
         y mostrarlos en pantalla.</span> </p>  
         <h2>¿Qué archivos se pueden leer?</h2>
         <p>Se leen los siguientes archivos: <span> .txt, .jpg, .png, .mp4 </span></p>
@@ -34,9 +35,37 @@
   <ion-icon name="brush" class="tema" title="Tema"></ion-icon>
   <div style="display: none;" class="divtema">
     <div class="contenidoTema">
-      <ion-icon name="close-circle" class="equis"></ion-icon>
-      <div>
-       
+      <ion-icon name="close-circle" id="equis"></ion-icon>
+      <div class="contTema">
+       <h1>Temas</h1>
+       <p>Personalizar colores</p>
+       <div class="parent">
+         <div class="div1">
+            <p>Color de Fondo: </p>
+            <input type="color" id="color">
+         </div>
+        <div class="div2">
+          <p>Color de Visualizacion del Archivo: </p>
+          <input type="color" id="color">
+          <img src="">
+        </div>
+        <div class="div3">
+          <p>Background-color: </p>
+          <input type="color" id="color">
+        </div>
+        <div class="div4">
+          <p>Background-color: </p>
+          <input type="color" id="color">
+        </div>
+        <div class="div5">
+          <p>Background-color: </p>
+          <input type="color" id="color">
+        </div>
+        <div class="div6">
+          <p>Background-color: </p>
+          <input type="color" id="color">
+        </div>
+       </div>
       </div>
     </div>
   </div>
@@ -54,6 +83,7 @@
     </div>
     <div class="salida"></div>
   </div>
+  <script src="./js/temas.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script src="./js/main.js"></script>
