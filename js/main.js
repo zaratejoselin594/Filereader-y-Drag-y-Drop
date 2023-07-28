@@ -19,21 +19,12 @@ zona.addEventListener("drop", (e) => {
   cambiarColor(e.target, " #baabfd", "#ddf")
   e.preventDefault();
   const archivo = e.dataTransfer.files[0];
+  const ars = e.dataTransfer.files;
+
+  if (archivo.type === "text/plain") leerArs(cargarTxt, ars, archivo); 
+  else if (archivo.type === "image/png" || archivo.type === "image/jpeg") leerArs(cargarImg, ars, archivo);
+  else if (archivo.type === "video/mp4") leerArs(cargarVideo, ars, archivo);
   
-  if (archivo.type === "text/plain") {
-    for (let i = 0; i < indice; i++) {
-      cargarTxt(archivo, archivo.name)
-    }
-  } else if (archivo.type === "image/png" || archivo.type === "image/jpeg") {
-    for (let i = 0; i < indice; i++) {
-      cargarImg(archivo, archivo.name)
-    }
-  }
-  else if (archivo.type === "video/mp4") {
-    for (let i = 0; i < indice; i++) {
-      cargarVideo(archivo, archivo.name)
-    }
-  }
 })
 
 // Cambiar colores para provocar impacto visual
@@ -47,6 +38,14 @@ window.onload = () => {
   sessionStorage.clear();
 };
 
+// Leer varios archivos al mismo tiempo
+const leerArs = (funcion, ars, ar) => {
+  if (ars.length >= 1) {
+    for (let i = 0; i < ars.length; i++) {
+      funcion(ars[i], ars[i].name)
+    }
+  } else funcion(ar, ar.name)
+}
 
 // Muestra el nombre del archivo en una columna, agregamos escucha al evento click en el nombre del archivo seleccionado, este archivo se muestra nuevamente en la pantalla
 let indice = 0;
@@ -126,15 +125,15 @@ const cargarImg = (ar, nombre) => {
   const leer = new FileReader();
   leer.readAsDataURL(ar);
   barProgress(ar)
-  leer.addEventListener("load", (e) => {
+  leer.addEventListener("load", () => {
     let IMG = document.createElement("IMG");
     desaparecerAr(IMG)
     let url = URL.createObjectURL(ar);
     IMG.setAttribute("src", url);
-    IMG.setAttribute("class",`${nombre}`)
+    IMG.setAttribute("class", `${nombre}`)
     document.querySelector(".salida").appendChild(IMG);
     mostrarAr(nombre, url, ar);
-  })   
+  })
 }
 
 // Muestra el video en el div con la clase salida
