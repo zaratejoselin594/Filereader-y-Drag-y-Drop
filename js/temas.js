@@ -37,8 +37,29 @@ const guardarColor = (...color) => {
     c[i].style.backgroundColor = `${predeterminado[i]}`
     btn.addEventListener("click", () => {
       localStorage.setItem(`${index}`, `${color[i].value}`)
-      fondo.style.backgroundColor = `${localStorage.getItem("0")}`
+      for (let i = 0; i < localStorage.length; i++){
+        
+        crearObj("prueba", color[0].value, color[1].value, color[2].value, color[3].value, color[4].value, color[5].value)
+        
+      }
+      console.log("funca")
     })
   }
 }
+const crearObj = (nombre, uno, dos, tres, cuatro, cinco, seis) => {
+  let objetoo = nombre + "Obj"
+  objetoo = {
+    1: `${uno}`,
+    2: `${dos}`,
+    3: `${tres}`,
+    4: `${cuatro}`,
+    5: `${cinco}`,
+    6: `${seis}`
+  }
+  console.log("funciona")
+  localStorage.setItem(`${nombre}`, `${JSON.stringify(objetoo)}`)
+}
+
+
+localStorage.setItem("aa", `${JSON.stringify(color)}`)
 guardarColor(color1, color2, color3, color4, color5, color6);
