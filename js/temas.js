@@ -27,27 +27,21 @@ const predeterminado = {
   5: "#853ba2"
 }
 const c = document.querySelectorAll(".c");
-const btn = document.getElementById("guardarCombinacion")
-let index = 0;
+const btn = document.getElementById("btn")
 
 const guardarColor = (...color) => {
   for (let i = 0; i < color.length; i++){
-    index++
     color[i].value = predeterminado[i]
     c[i].style.backgroundColor = `${predeterminado[i]}`
-    btn.addEventListener("click", () => {
-      localStorage.setItem(`${index}`, `${color[i].value}`)
-      for (let i = 0; i < localStorage.length; i++){
-        
-        crearObj("prueba", color[0].value, color[1].value, color[2].value, color[3].value, color[4].value, color[5].value)
-        
-      }
-      console.log("funca")
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const nombre = document.getElementById("nombreobj")
+      crearObj(`${nombre.value}`, color[0].value, color[1].value, color[2].value, color[3].value, color[4].value, color[5].value,);
     })
   }
 }
 const crearObj = (nombre, uno, dos, tres, cuatro, cinco, seis) => {
-  let objetoo = nombre + "Obj"
+  let objetoo = nombre + "_Obj"
   objetoo = {
     1: `${uno}`,
     2: `${dos}`,
@@ -56,10 +50,8 @@ const crearObj = (nombre, uno, dos, tres, cuatro, cinco, seis) => {
     5: `${cinco}`,
     6: `${seis}`
   }
-  console.log("funciona")
   localStorage.setItem(`${nombre}`, `${JSON.stringify(objetoo)}`)
 }
 
 
-localStorage.setItem("aa", `${JSON.stringify(color)}`)
 guardarColor(color1, color2, color3, color4, color5, color6);

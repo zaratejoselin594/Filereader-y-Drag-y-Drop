@@ -34,9 +34,6 @@
   box-shadow: #3333 10px 10px 15px;
   transition: border .6s, box-shadow .7s;
 }
-.zona-arrastre ion-icon{
-  z-index: -2;
-}
 .archivos{
   text-align: center;
   width: 83%;

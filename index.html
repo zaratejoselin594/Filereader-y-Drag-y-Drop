@@ -40,7 +40,7 @@
         <h1>Temas</h1>
         <p>Personalizar colores</p>
         <div class="combinaciones">
-          <p>Combinaciones:</p>
+          <p>Temas:</p>
           <div class="circulos">
             <p>Predeterminado</p>
             <ion-icon name="trash" id="eliminar" title="Eliminar"></ion-icon>
@@ -54,39 +54,45 @@
             </div>
           </div>
         </div>
-        <button id="guardarCombinacion">Guardar Combinacion</button>
         <div class="parent">
-          <div class="div1">
-             <p>Color de Fondo: </p>
-             <input type="color" class="color" id="uno">
-             <img src="./img/filereader-drag-drop.png">
+            <div class="div1">
+              <p>Color de Fondo: </p>
+              <input type="color" class="color" id="uno">
+              <img src="./img/filereader-drag-drop.png">
+            </div>
+            <div class="div2">
+              <p>Visualizacion del Archivo: </p>
+              <input type="color" class="color" id="dos">
+              <img src="./img/salida.png">
+            </div>
+            <div class="div3">
+              <p>Zona de Arrastre de Archivo: </p>
+              <input type="color" class="color" id="tres">
+              <img src="./img/arrastrar-ar.png">
+            </div>
+            <div class="div4">
+              <p>Columna de Archivos Abiertos: </p>
+              <input type="color" class="color" id="cuatro">
+              <img src="./img/ar-abierto.png">
+            </div>
+            <div class="div5">
+              <p>Archivos abiertos: </p>
+              <input type="color" class="color" id="cinco">
+              <img src="./img/ar-abierto-archivo1.png">
+            </div>
+            <div class="div6">
+              <p>Archivo abierto y Mostrandose: </p>
+              <input type="color" class="color" id="seis">
+              <img src="./img/ar-abierto-archivo2.png">
+            </div>
+            <div class="mensajes">
+              <p>Ponle un Nombre a tu Tema</p>
+              <form autocomplete="off">
+                <input type="text" id="nombreobj" placeholder="Ingresa El Nombre">
+                <button id="btn">Crear Tema</button>
+              </form>
+            </div>
           </div>
-         <div class="div2">
-           <p>Visualizacion del Archivo: </p>
-           <input type="color" class="color" id="dos">
-           <img src="./img/salida.png">
-         </div>
-         <div class="div3">
-           <p>Zona de Arrastre de Archivo: </p>
-           <input type="color" class="color" id="tres">
-           <img src="./img/arrastrar-ar.png">
-         </div>
-         <div class="div4">
-           <p>Columna de Archivos Abiertos: </p>
-           <input type="color" class="color" id="cuatro">
-           <img src="./img/ar-abierto.png">
-         </div>
-         <div class="div5">
-           <p>Archivos abiertos: </p>
-           <input type="color" class="color" id="cinco">
-           <img src="./img/ar-abierto-archivo1.png">
-         </div>
-         <div class="div6">
-           <p>Archivo abierto y Mostrandose: </p>
-           <input type="color" class="color" id="seis">
-           <img src="./img/ar-abierto-archivo2.png">
-         </div>
-        </div>
       </div>
     </div>
   </div>
@@ -94,7 +100,7 @@
     <div class="contenido">  
       <div class="zona-arrastre">
         Arrastrar Aquí El Archivo 
-        <ion-icon name="folder" class="iconAr"></ion-icon>
+        <ion-icon name="folder-open" class="iconAr"></ion-icon>
       </div>
       <div class="progresoBar" style="left: 125px;"></div>
       <div class="archivos">
