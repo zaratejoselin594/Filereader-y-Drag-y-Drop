@@ -115,25 +115,25 @@ const crearHtml = (nombre) => {
 // Cada vez que se de click se ejecuta la funcion crearHtml()
 btn.addEventListener("click", (e) => {
   e.preventDefault()
-  crearHtml(nombreTema.value)
+  for (let i = 0; i < localStorage.length; i++) {
+    let llave = localStorage.key(i);
+    crearHtml(llave)
+  }
 })
 
 // Agregarle el color a los circulos dependiendo los colores que hayan sido seleccioados
 const coloresCirculos = (nombre) => {
-  let llave;
-  let obj;
-  for (let i = 0; i < localStorage.length; i++) {
-    llave = localStorage.key(i);
-    let objString = localStorage.getItem(llave);
-    obj = JSON.parse(objString)
-  }
   const c2 = document.querySelectorAll(`.${nombre}`)
-  
-  for (let i = 0; i < 6; i++){
-    if (llave === nombre) {
+  for (let i = 0; i < localStorage.length; i++) {
+    let llave = localStorage.key(i);
+    let objString = localStorage.getItem(llave);
+    let obj = JSON.parse(objString)
+    for (let i = 0; i < 6; i++){
       c2[i].style.backgroundColor = `${obj[i]}`;
-    }
-  } 
+    } 
+  }
+  
+  
 }
 
 // Crear obj con las partes de la web
