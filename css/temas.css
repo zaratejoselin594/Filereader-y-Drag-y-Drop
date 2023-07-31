@@ -96,7 +96,7 @@
   margin: 3.5em;
 }
 #equis {
-  position: absolute;
+  position: fixed;
   margin: 15px;
   color: #fff;
   font-size: 2em;
@@ -145,13 +145,13 @@
 #eliminar:hover{
   background-color: #666;
 }
-.mensajes{
+.crearNombreTema{
   background-color: #444;
   border-radius: 8px;
   padding: 20px;
   margin: 20px;
 }
-.mensajes input{
+.crearNombreTema input{
   background-color: transparent;
   outline: none;
   text-align: center;
@@ -160,7 +160,7 @@
   margin: 20px;
   border-bottom: #fff 3px solid;
 }
-.mensajes button{
+.crearNombreTema button{
   background-color: #68bbeb;
   outline: none;
   border-radius: 8px;
@@ -170,6 +170,6 @@
   color: #000;
   transition: box-shadow .6s;
 }
-.mensajes button:hover{
+.crearNombreTema button:hover{
   box-shadow: #5fabd6 0px 0px 10px;
 }

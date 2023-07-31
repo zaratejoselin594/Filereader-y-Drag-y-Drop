@@ -122,7 +122,6 @@ const crearTema = (nombre) => {
     div2.appendChild(circulos);
   }
   const c2 = document.querySelectorAll(`.${nombre}`)
-  colores(c2)
 }
 
 const colores = (colores, nombre) => {
@@ -133,7 +132,7 @@ const colores = (colores, nombre) => {
     if (llave == nombre) {
       for (let i = 1; i < 7; i++){
         console.log("obj "+obj[i] )
-        colores[i].style.backgroundColor=`${obj[i]}`
+        //colores[i].style.backgroundColor=`${obj[i]}`
         
       }
       
