@@ -70,24 +70,35 @@ const crearObj = (nombre, uno, dos, tres, cuatro, cinco, seis) => {
   localStorage.setItem(`${nombre}`, `${JSON.stringify(objetoo)}`)
 }
 
-window.onload = () => {
+// Cada vez que se recarge la pagina cargar los temas en el div
+window.addEventListener("load", () => {
   for (let i = 0; i < localStorage.length; i++){
     let llave = localStorage.key(i);
     crearTema(llave)    
   }
-}
+})
+
+// Cada vez que haya algun cambio cargar los temas en el div
+localStorage.addEventListener("change", () => {
+  for (let i = 0; i < localStorage.length; i++) {
+    let llave = localStorage.key(i);
+    crearTema(llave)
+  }
+})
 btn.addEventListener("click", () => {
-  crearTema(nombre.value)
+  crearTema(nombreTema.value)
 })
 guardarColor(color1, color2, color3, color4, color5, color6);
 
 const crearTema = (nombre) => {
   // Contenedor 1
   const combinaciones = document.querySelector(".combinaciones")
+
   // Contenedor 2
   const div = document.createElement("div");
   combinaciones.appendChild(div)
   div.setAttribute("class", "circulos")
+
   // Dentro del contenedor 2
   const p = document.createElement("p");
   const div2 = document.createElement("div")

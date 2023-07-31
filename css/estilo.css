@@ -78,12 +78,14 @@ h3{ margin-top: 35px; }
 .ar p{
   cursor: pointer;
   margin: 8px;
+  height: 1.5em;
   padding: 5px;
   width: 80%;
   background-color: #334499;
   border-radius: 5px;
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
+  overflow: hidden;
   transition: background-color .6s, width .6s;
 }
 .ar p:hover{ 

@@ -24,7 +24,8 @@
 }
 .combinaciones{
   width: 94%;
-  height: auto;
+  height: 7em;
+  overflow-y: scroll;
   margin-top: 20px;
   padding: 20px;
   margin-bottom: 20px;
@@ -118,14 +119,16 @@
   align-items: center;
   justify-content: center;
 }
-.contenidoTema::-webkit-scrollbar {
+.contenidoTema::-webkit-scrollbar, .combinaciones::-webkit-scrollbar{
   width: 10px;
 }
-.contenidoTema::-webkit-scrollbar-track {
+.contenidoTema::-webkit-scrollbar-track,
+.combinaciones::-webkit-scrollbar-track {
   border-radius: 7px;
   background: #333;
 }
-.contenidoTema::-webkit-scrollbar-thumb {
+.contenidoTema::-webkit-scrollbar-thumb,
+.combinaciones::-webkit-scrollbar-thumb {
   background-color: #555;
   border-radius: 20px;
 }
