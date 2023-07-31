@@ -20,9 +20,6 @@ const color4 = document.getElementById("cuatro");
 const color5 = document.getElementById("cinco");
 const color6 = document.getElementById("seis");
 
-// Fondo de la web
-const fondo = document.querySelector(".contenedor")
-
 // Tema de la web predeterminado
 const predeterminado = {
   0: "#445599",
@@ -93,7 +90,7 @@ const crearHtml = (nombre) => {
   // Contenedor 2
   const div = document.createElement("div");
   combinaciones.appendChild(div)
-  div.setAttribute("class", "circulos")
+  div.setAttribute("class", `circulos ${nombre + "div"}`);
 
   // Dentro del contenedor 2
   // Creamos el p con el nombre del tema
@@ -130,9 +127,36 @@ const coloresCirculos = (nombre) => {
     obj = JSON.parse(objString)
   }
   const c2 = document.querySelectorAll(`.${nombre}`)
+  
   for (let i = 0; i < 6; i++){
-    c2[i].style.backgroundColor = `${obj[i]}`;
-    console.log(obj[i])
-  }
+    if (llave === nombre) {
+      c2[i].style.backgroundColor = `${obj[i]}`;
+    }
+  } 
 }
 
+// Crear obj con las partes de la web
+const objHtml = {
+  0: document.querySelector(".contenedor"),
+  1: document.querySelector(".salida"),
+  2: document.querySelector(".zona-arrastre"),
+  3: document.querySelector(".ar"),
+  4: document.querySelector(".no"),
+  5: document.querySelector(".si")
+} 
+
+// Aplicar el tema a la web
+const aplicarTema = () => {
+  let llave;
+  let obj;
+  for (let i = 0; i < localStorage.length; i++) {
+    llave = localStorage.key(i);
+    let objString = localStorage.getItem(llave);
+    obj = JSON.parse(objString)
+  }
+  for (let i = 0; i < 6; i++){
+    if (objHtml[i] !== null) {
+     // objHtml[i].style.backgroundColor = `${obj[i]}`
+    }
+  }
+}

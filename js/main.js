@@ -53,8 +53,7 @@ const mostrarAr = (nombre, ar, archivo) => {
   const p = document.createElement("p");
   indice++
 
-  // Agregarle una clase y id como identificador unico
-  p.setAttribute("class", `${indice}`);
+  // Agregarle un identificador unico
   p.setAttribute("id", `${nombre}`);
 
   listaAr.appendChild(p);
@@ -80,11 +79,12 @@ const reaparecerAr = (nombre) => {
       document.getElementsByClassName(`${llave}`)[0].style.opacity = "1";
       document.getElementById(`${llave}`).style.backgroundColor = "#853ba2";
       document.getElementById(`${llave}`).style.width = "90%";
+      document.getElementById(`${llave}`).setAttribute("class", "si")
     } else {
       document.getElementsByClassName(`${llave}`)[0].style.opacity = "0";
       document.getElementById(`${llave}`).style.backgroundColor = "#349";
       document.getElementById(`${llave}`).style.width = "80%";
-
+      document.getElementById(`${llave}`).setAttribute("class", "no")
     } 
   }
 }
