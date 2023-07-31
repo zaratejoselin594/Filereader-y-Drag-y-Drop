@@ -29,12 +29,15 @@
   padding: 20px;
   margin-bottom: 20px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
   gap: .4em;
   background-color: #444;
   border-radius: 8px;
   position: relative;
+}
+.temasP{
+  font-size: 30px;
 }
 .circulos{
   width: 12em;
