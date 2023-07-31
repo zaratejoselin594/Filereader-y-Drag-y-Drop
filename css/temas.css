@@ -37,9 +37,7 @@
   border-radius: 8px;
   position: relative;
 }
-.temasP{
-  font-size: 30px;
-}
+
 .circulos{
   width: 12em;
   padding: 10px; 
@@ -64,8 +62,10 @@
   gap: .4em;
 }
 .c{
-  width: 1.5em;
-  height:   1.5em;
+  width: 1.3em;
+  height: 1.3em;
+  border: 1px solid #fff;
+  box-shadow: 2px 2px 0px #333;
   border-radius: 50%;
   background-color: #fff;
 }

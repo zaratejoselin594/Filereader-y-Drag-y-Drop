@@ -129,11 +129,11 @@ const coloresCirculos = (nombre) => {
     let objString = localStorage.getItem(llave);
     let obj = JSON.parse(objString)
     for (let i = 0; i < 6; i++){
-      c2[i].style.backgroundColor = `${obj[i]}`;
+      if (llave === nombre) {
+        c2[i].style.backgroundColor = `${obj[i]}`;
+      }
     } 
   }
-  
-  
 }
 
 // Crear obj con las partes de la web
