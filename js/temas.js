@@ -34,7 +34,7 @@ const predeterminado = {
 }
 
 // Circulos de colores
-const c = document.querySelectorAll(".c");
+const c = document.querySelectorAll(".predeterminado");
 
 const btn = document.getElementById("btn")
 const nombreTema = document.getElementById("nombreobj")
@@ -53,6 +53,13 @@ const guardarColor = (...color) => {
     })
   }
 }
+// Ejecutamos la funcion
+guardarColor(color1, color2, color3, color4, color5, color6);
+
+// Cada vez que se de click se ejecuta la funcion crearTema()
+btn.addEventListener("click", () => {
+  crearTema(nombreTema.value)
+})
 
 // Creamos la funcion que crea objetos
 const crearObj = (nombre, uno, dos, tres, cuatro, cinco, seis) => {
@@ -78,17 +85,8 @@ window.addEventListener("load", () => {
   }
 })
 
-// Cada vez que haya algun cambio cargar los temas en el div
-localStorage.addEventListener("change", () => {
-  for (let i = 0; i < localStorage.length; i++) {
-    let llave = localStorage.key(i);
-    crearTema(llave)
-  }
-})
-btn.addEventListener("click", () => {
-  crearTema(nombreTema.value)
-})
-guardarColor(color1, color2, color3, color4, color5, color6);
+
+
 
 const crearTema = (nombre) => {
   // Contenedor 1
@@ -100,30 +98,46 @@ const crearTema = (nombre) => {
   div.setAttribute("class", "circulos")
 
   // Dentro del contenedor 2
+  // Creamos el p con el nombre del tema
   const p = document.createElement("p");
   const div2 = document.createElement("div")
   div.appendChild(p)
   div.appendChild(div2)
   p.textContent = `${nombre}`;
-  p.setAttribute("class", "nombreDelTema")
+  
+
+  // Creamos el icono de eliminar
+  const iconoEliminar = document.createElement('ion-icon');
+  iconoEliminar.setAttribute('name', 'trash');
+  iconoEliminar.setAttribute('id', 'eliminar');
+  iconoEliminar.setAttribute('title', 'Eliminar');
+  div.appendChild(iconoEliminar)
+
   
   // Dentro del contenedor 2, circulos con colores
   for (let i = 0; i < 6; i++) {
     let circulos = document.createElement("div");
     circulos.setAttribute("class", "c");
+    circulos.setAttribute("class", `${nombre}`)
     div2.appendChild(circulos);
-    let c = document.querySelectorAll(".c")
   }
-  
+  const c2 = document.querySelectorAll(`.${nombre}`)
+  colores(c2)
 }
-/*
-const colores = (colores) => {
+
+const colores = (colores, nombre) => {
   for (let i = 0; i < localStorage.length; i++) {
     let llave = localStorage.key(i);
+    let objString = localStorage.getItem(llave);
+    let obj = JSON.parse(objString)
     if (llave == nombre) {
-      colores[i].style.backgroundColor=`${llave[i]}`
-      crearTema(localStorage.key(i))
+      for (let i = 1; i < 7; i++){
+        console.log("obj "+obj[i] )
+        colores[i].style.backgroundColor=`${obj[i]}`
+        
+      }
+      
     }
+    console.log("llave " + llave)
   }
 }
-*/
