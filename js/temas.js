@@ -58,19 +58,19 @@ guardarColor(color1, color2, color3, color4, color5, color6);
 
 // Cada vez que se de click se ejecuta la funcion crearTema()
 btn.addEventListener("click", () => {
-  crearTema(nombreTema.value)
+  crearHtml(nombreTema.value)
 })
 
 // Creamos la funcion que crea objetos
-const crearObj = (nombre, uno, dos, tres, cuatro, cinco, seis) => {
+const crearObj = (nombre, cero, uno, dos, tres, cuatro, cinco) => {
   let objetoo = nombre + "_Obj"
   objetoo = {
+    0: `${cero}`,
     1: `${uno}`,
     2: `${dos}`,
     3: `${tres}`,
     4: `${cuatro}`,
-    5: `${cinco}`,
-    6: `${seis}`
+    5: `${cinco}`
   }
 
   // Guardamos el obj en el localStorage
@@ -81,14 +81,12 @@ const crearObj = (nombre, uno, dos, tres, cuatro, cinco, seis) => {
 window.addEventListener("load", () => {
   for (let i = 0; i < localStorage.length; i++){
     let llave = localStorage.key(i);
-    crearTema(llave)    
+    crearHtml(llave)    
   }
 })
 
-
-
-
-const crearTema = (nombre) => {
+// Crear elementos html para mostrar
+const crearHtml = (nombre) => {
   // Contenedor 1
   const combinaciones = document.querySelector(".combinaciones")
 
@@ -117,26 +115,24 @@ const crearTema = (nombre) => {
   // Dentro del contenedor 2, circulos con colores
   for (let i = 0; i < 6; i++) {
     let circulos = document.createElement("div");
-    circulos.setAttribute("class", "c");
-    circulos.setAttribute("class", `${nombre}`)
+    circulos.setAttribute("class", `c ${nombre}`);
     div2.appendChild(circulos);
   }
-  const c2 = document.querySelectorAll(`.${nombre}`)
+  coloresCirculos(nombre)
 }
 
-const colores = (colores, nombre) => {
+const coloresCirculos = (nombre) => {
+  let llave;
+  let obj;
   for (let i = 0; i < localStorage.length; i++) {
-    let llave = localStorage.key(i);
+    llave = localStorage.key(i);
     let objString = localStorage.getItem(llave);
-    let obj = JSON.parse(objString)
-    if (llave == nombre) {
-      for (let i = 1; i < 7; i++){
-        console.log("obj "+obj[i] )
-        //colores[i].style.backgroundColor=`${obj[i]}`
-        
-      }
-      
-    }
-    console.log("llave " + llave)
+    obj = JSON.parse(objString)
+  }
+  const c2 = document.querySelectorAll(`.${nombre}`)
+  for (let i = 0; i < 6; i++){
+    c2[i].style.backgroundColor = `${obj[i]}`;
+    console.log(obj[i])
   }
 }
+
