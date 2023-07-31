@@ -47,7 +47,6 @@
   position: relative;
   background-color: #555;
   border-radius: 10px;
-  cursor: pointer;
   transition: background .6s;
   display: flex;
   justify-content: center;

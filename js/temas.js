@@ -36,10 +36,10 @@ const c = document.querySelectorAll(".predeterminado");
 const btn = document.getElementById("btn")
 const nombreTema = document.getElementById("nombreobj")
 
-// Guardamos el colore seleccionados para crear el tema
+// Guardamos el colores seleccionados para crear el tema
 const guardarColor = (...color) => {
   for (let i = 0; i < color.length; i++){
-    // Le damos el valor de los colores predeterminados
+    // Le damos el valor a los colores de predeterminados
     color[i].value = predeterminado[i]
     c[i].style.backgroundColor = `${predeterminado[i]}`
 
@@ -52,11 +52,6 @@ const guardarColor = (...color) => {
 }
 // Ejecutamos la funcion
 guardarColor(color1, color2, color3, color4, color5, color6);
-
-// Cada vez que se de click se ejecuta la funcion crearTema()
-btn.addEventListener("click", () => {
-  crearHtml(nombreTema.value)
-})
 
 // Creamos la funcion que crea objetos
 const crearObj = (nombre, cero, uno, dos, tres, cuatro, cinco) => {
@@ -117,7 +112,13 @@ const crearHtml = (nombre) => {
   }
   coloresCirculos(nombre)
 }
+// Cada vez que se de click se ejecuta la funcion crearHtml()
+btn.addEventListener("click", (e) => {
+  e.preventDefault()
+  crearHtml(nombreTema.value)
+})
 
+// Agregarle el color a los circulos dependiendo los colores que hayan sido seleccioados
 const coloresCirculos = (nombre) => {
   let llave;
   let obj;
@@ -156,7 +157,24 @@ const aplicarTema = () => {
   }
   for (let i = 0; i < 6; i++){
     if (objHtml[i] !== null) {
-     // objHtml[i].style.backgroundColor = `${obj[i]}`
+      objHtml[0].style.backgroundColor = `${obj[0]}`
+    } 
+  }
+}
+aplicarTema()
+
+// Funcion de eliminar temas
+const eliminarTema = (nombre) => {
+  for (let i = 0; i < localStorage.length; i++){
+    llave = localStorage.key(i)
+    if (llave === nombre) {
+      localStorage.removeItem(`${llave}`);
     }
   }
 }
+
+// Hacemos escucha al evento click para eliminar tema
+document.getElementById("eliminar").addEventListener("click", () => {
+  alert()
+  eliminarTema("uno")
+})
