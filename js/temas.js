@@ -19,6 +19,7 @@ const color3 = document.getElementById("tres");
 const color4 = document.getElementById("cuatro");
 const color5 = document.getElementById("cinco");
 const color6 = document.getElementById("seis");
+const color7 = document.getElementById("siete");
 
 // Tema de la web predeterminado
 const predeterminado = {
@@ -27,7 +28,8 @@ const predeterminado = {
   2: "#6071b2",
   3: "#040855",
   4: "#334499",
-  5: "#853ba2"
+  5: "#853ba2",
+  6: "#ffffff"
 }
 
 // Circulos de colores
@@ -46,15 +48,15 @@ const guardarColor = (...color) => {
     // Cada vez que se haga click se creara un nuevo obj con los colores del nuevo tema
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-      crearObj(`${nombreTema.value}`, color[0].value, color[1].value, color[2].value, color[3].value, color[4].value, color[5].value,);
+      crearObj(`${nombreTema.value}`, color[0].value, color[1].value, color[2].value, color[3].value, color[4].value, color[6].value, color[5].value);
     })
   }
 }
 // Ejecutamos la funcion
-guardarColor(color1, color2, color3, color4, color5, color6);
+guardarColor(color1, color2, color3, color4, color5, color6, color7);
 
 // Creamos la funcion que crea objetos
-const crearObj = (nombre, cero, uno, dos, tres, cuatro, cinco) => {
+const crearObj = (nombre, cero, uno, dos, tres, cuatro, cinco, seis) => {
   let objetoo = nombre + "_Obj"
   objetoo = {
     0: `${cero}`,
@@ -62,7 +64,8 @@ const crearObj = (nombre, cero, uno, dos, tres, cuatro, cinco) => {
     2: `${dos}`,
     3: `${tres}`,
     4: `${cuatro}`,
-    5: `${cinco}`
+    5: `${cinco}`,
+    6: `${seis}`
   }
 
   // Guardamos el obj en el localStorage
@@ -110,7 +113,7 @@ const crearHtml = (nombre) => {
 
 
   // Dentro del contenedor 2, circulos con colores
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 7; i++) {
     let circulos = document.createElement("div");
     circulos.setAttribute("class", `c ${nombre}`);
     div2.appendChild(circulos);
@@ -133,11 +136,12 @@ const objHtml = {
   1: document.querySelector(".salida"),
   2: document.querySelector(".zona-arrastre"),
   3: document.querySelector(".ar"),
-  4: document.querySelector(".no"),
-  5: document.querySelector(".si")
-} 
+  4: document.querySelector(".si"),
+}
 
 // Agregarle el color a los circulos dependiendo los colores que hayan sido seleccioados
+const arNo = document.querySelectorAll(".no");
+const p = document.querySelectorAll("p")
 const crearTema = (nombre) => {
   const c2 = document.querySelectorAll(`.${nombre}`)
   let llave;
@@ -146,17 +150,22 @@ const crearTema = (nombre) => {
     llave = localStorage.key(i);
     let objString = localStorage.getItem(llave);
     obj = JSON.parse(objString)
-    for (let i = 0; i < 6; i++){
+    for (let i = 0; i < 7; i++){
       if (llave === nombre) {
         c2[i].style.backgroundColor = `${obj[i]}`;
       }
     } 
   }
-  for (let i = 0; i < 6; i++) {
-    if (objHtml[i] !== null) {
-      objHtml[i].style.backgroundColor = `${obj[i]}`
-    }
+  for (let i = 0; i < 5; i++) {
+    objHtml[i].style.backgroundColor = `${obj[i]}`
+    console.log(i)
   }
+  arNo.forEach(ar => {
+    ar.style.backgroundColor = `${obj[5]}`
+  });
+  p.forEach(p => {
+    p.style.color = `${obj[6]}`
+  });
 }
 
 // Funcion de eliminar temas
@@ -165,18 +174,17 @@ const eliminarTema = (nombre) => {
     llave = localStorage.key(i)
     if (llave === nombre) {
       localStorage.removeItem(`${llave}`);
-      document.querySelector(`${nombre}`).remove()
+      const combinaciones = document.querySelector(".combinaciones")
+      combinaciones.removeChild(document.querySelector(`${nombre}`))
     }
   }
 }
 
-const eliminar = document.querySelectorAll("#eliminar")
+let eliminar = document.querySelectorAll("#eliminar")
 eliminar.forEach(e => {
   e.addEventListener("click", () => {
     alert()
-    for (let i = 0; i < localStorage.length; i++) {
-      let llave = localStorage.key(i);
-      eliminarTema(llave)
-    }
+    console.log("funciona")
+    
   })
 })

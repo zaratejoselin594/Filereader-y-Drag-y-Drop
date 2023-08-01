@@ -138,6 +138,7 @@
   padding: 5px;
   border-radius: 50%;
   transition: background .6s;
+  cursor: pointer;
   z-index: 10;
 }
 #eliminar:hover{
@@ -148,6 +149,10 @@
   border-radius: 8px;
   padding: 20px;
   margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .crearNombreTema input{
   background-color: transparent;
