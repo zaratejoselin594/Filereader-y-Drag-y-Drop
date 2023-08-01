@@ -109,14 +109,20 @@
   align-items: center;
 }
 .parent img{
-  margin: .7em;
-  object-fit: cover;
+  width: 10em;
+  height: 8em;
+  padding: 1em;
+  object-fit: contain;
 }
 .parent div {
+  padding: .7em;
+  margin: 10px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #444;
 }
 .contenidoTema::-webkit-scrollbar, .combinaciones::-webkit-scrollbar{
   width: 10px;
@@ -136,9 +142,11 @@
   position: absolute;
   right: 5px;
   font-size: 15px;
+  background-color: transparent;
   top: 3px;
+  border: none;
   border-radius: 50%;
-  padding: 0px 7px 0px 7px;
+  padding: 2px 7px 2px 7px;
   transition: background .6s;
   cursor: pointer;
   z-index: 10;

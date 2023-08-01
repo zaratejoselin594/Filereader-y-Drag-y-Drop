@@ -31,10 +31,7 @@ const predeterminado = {
   5: "#853ba2",
   6: "#ffffff"
 }
-localStorage.setItem("predeterminado", `${JSON.stringify(predeterminado)}`)
-
-// Circulos de colores
-const c = document.querySelectorAll(".predeterminado");
+localStorage.setItem("Predeterminado", `${JSON.stringify(predeterminado)}`)
 
 const btn = document.getElementById("btn")
 const nombreTema = document.getElementById("nombreobj")
@@ -42,9 +39,8 @@ const nombreTema = document.getElementById("nombreobj")
 // Guardamos el colores seleccionados para crear el tema
 const guardarColor = (...color) => {
   for (let i = 0; i < color.length; i++){
-    // Le damos el valor a los colores de predeterminados
+    // Le damos el valor a los colores de predeterminado
     color[i].value = predeterminado[i]
-    c[i].style.backgroundColor = `${predeterminado[i]}`
 
     // Cada vez que se haga click se creara un nuevo obj con los colores del nuevo tema
     btn.addEventListener("click", (e) => {
@@ -105,13 +101,15 @@ const crearHtml = (nombre) => {
   p.textContent = `${nombre}`;
   
 
-  // Creamos el icono de eliminar
-  const iconoEliminar = document.createElement('p');
-  iconoEliminar.textContent = "✕"
-  iconoEliminar.setAttribute('id', 'eliminar');
-  iconoEliminar.setAttribute('title', 'Eliminar');
-  div.appendChild(iconoEliminar)
-
+  // Creamos el icono de eliminar, y no permitimos el el predeterminado se elimine
+  if (nombre !== "Predeterminado") {
+    const iconoEliminar = document.createElement('button');
+    iconoEliminar.textContent = "✕"
+    iconoEliminar.setAttribute('id', 'eliminar');
+    iconoEliminar.setAttribute('title', 'Eliminar');
+    div.appendChild(iconoEliminar)
+  }
+  
 
   // Dentro del contenedor 2, circulos con colores
   for (let i = 0; i < 7; i++) {
@@ -121,7 +119,7 @@ const crearHtml = (nombre) => {
   }
   crearTema(nombre)
 
-  div.addEventListener("click", (e) => {
+  div.addEventListener("click", () => {
     crearTema(nombre)
   })
 }
@@ -159,24 +157,19 @@ const crearTema = (nombre) => {
         c2[i].style.backgroundColor = `${obj[i]}`;
       }
     } 
-    for (let i = 0; i < 5; i++) {
-      if (llave === nombre) {
+    if (llave === nombre) {
+      for (let i = 0; i < 5; i++) {
         if (objHtml[i] !== null) {
           objHtml[i].style.backgroundColor = `${obj[i]}`
         }
       }
-    }
-    arNo.forEach(ar => {
-      if (llave === nombre) {
+      arNo.forEach(ar => {
         if (arNo !== null) {
           ar.style.backgroundColor = `${obj[5]}`
         }
-      }
-    });
-  
-    let elementosConTexto = document.querySelectorAll('p, h1, h2, h3, input[type="text"], button, span, ion-icon');
-    for (let i = 0; i < elementosConTexto.length; i++) {
-      if (llave === nombre) {
+      });
+      let elementosConTexto = document.querySelectorAll('p, h1, h2, h3, input[type="text"], button, span, ion-icon');
+      for (let i = 0; i < elementosConTexto.length; i++) {
         elementosConTexto[i].style.color = `${obj[6]}`;
       }
     }
@@ -190,7 +183,7 @@ const eliminarTema = (nombre) => {
     if (llave === nombre) {
       localStorage.removeItem(`${llave}`);
       const combinaciones = document.querySelector(".combinaciones")
-      combinaciones.removeChild(document.querySelector(`${nombre}`))
+      combinaciones.removeChild(document.querySelector(`${llave}`))
       console.log(llave)
     }
   }
@@ -199,10 +192,6 @@ const eliminarTema = (nombre) => {
 let eliminar = document.querySelectorAll("#eliminar")
 for (let i = 0; i < eliminar.length; i++){
   eliminar[i].addEventListener("click", () => {
-    for (let i = 0; i < localStorage.length; i++) {
-      llave = localStorage.key(i)
-      eliminarTema(llave)
-      console.log(llave)
-    }
+    console.log("click")
   })
 }
