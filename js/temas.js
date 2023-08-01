@@ -71,9 +71,14 @@ const crearObj = (nombre, cero, uno, dos, tres, cuatro, cinco) => {
 
 // Cada vez que se recarge la pagina cargar los temas en el div
 window.addEventListener("load", () => {
+  const eliminar = document.querySelectorAll("#eliminar")
+  eliminar.forEach(e => {
+    e.classList.remove("md", "hydrated");
+  })
+
   for (let i = 0; i < localStorage.length; i++){
     let llave = localStorage.key(i);
-    crearHtml(llave)    
+    crearHtml(llave)
   }
 })
 
@@ -97,21 +102,22 @@ const crearHtml = (nombre) => {
   
 
   // Creamos el icono de eliminar
-  const iconoEliminar = document.createElement('ion-icon');
-  iconoEliminar.setAttribute('name', 'trash');
+  const iconoEliminar = document.createElement('p');
+  iconoEliminar.textContent = "🗑"
   iconoEliminar.setAttribute('id', 'eliminar');
   iconoEliminar.setAttribute('title', 'Eliminar');
   div.appendChild(iconoEliminar)
 
-  
+
   // Dentro del contenedor 2, circulos con colores
   for (let i = 0; i < 6; i++) {
     let circulos = document.createElement("div");
     circulos.setAttribute("class", `c ${nombre}`);
     div2.appendChild(circulos);
   }
-  coloresCirculos(nombre)
+  crearTema(nombre)
 }
+
 // Cada vez que se de click se ejecuta la funcion crearHtml()
 btn.addEventListener("click", (e) => {
   e.preventDefault()
@@ -120,21 +126,6 @@ btn.addEventListener("click", (e) => {
     crearHtml(llave)
   }
 })
-
-// Agregarle el color a los circulos dependiendo los colores que hayan sido seleccioados
-const coloresCirculos = (nombre) => {
-  const c2 = document.querySelectorAll(`.${nombre}`)
-  for (let i = 0; i < localStorage.length; i++) {
-    let llave = localStorage.key(i);
-    let objString = localStorage.getItem(llave);
-    let obj = JSON.parse(objString)
-    for (let i = 0; i < 6; i++){
-      if (llave === nombre) {
-        c2[i].style.backgroundColor = `${obj[i]}`;
-      }
-    } 
-  }
-}
 
 // Crear obj con las partes de la web
 const objHtml = {
@@ -146,35 +137,46 @@ const objHtml = {
   5: document.querySelector(".si")
 } 
 
-// Aplicar el tema a la web
-const aplicarTema = () => {
+// Agregarle el color a los circulos dependiendo los colores que hayan sido seleccioados
+const crearTema = (nombre) => {
+  const c2 = document.querySelectorAll(`.${nombre}`)
   let llave;
   let obj;
   for (let i = 0; i < localStorage.length; i++) {
     llave = localStorage.key(i);
     let objString = localStorage.getItem(llave);
     obj = JSON.parse(objString)
-  }
-  for (let i = 0; i < 6; i++){
-    if (objHtml[i] !== null) {
-      objHtml[0].style.backgroundColor = `${obj[0]}`
+    for (let i = 0; i < 6; i++){
+      if (llave === nombre) {
+        c2[i].style.backgroundColor = `${obj[i]}`;
+      }
     } 
   }
-}
-aplicarTema()
-
-// Funcion de eliminar temas
-const eliminarTema = (nombre) => {
-  for (let i = 0; i < localStorage.length; i++){
-    llave = localStorage.key(i)
-    if (llave === nombre) {
-      localStorage.removeItem(`${llave}`);
+  for (let i = 0; i < 6; i++) {
+    if (objHtml[i] !== null) {
+      objHtml[i].style.backgroundColor = `${obj[i]}`
     }
   }
 }
 
-// Hacemos escucha al evento click para eliminar tema
-document.getElementById("eliminar").addEventListener("click", () => {
-  alert()
-  eliminarTema("uno")
+// Funcion de eliminar temas
+const eliminarTema = (nombre) => {
+  for (let i = 0; i < localStorage.length; i++) {
+    llave = localStorage.key(i)
+    if (llave === nombre) {
+      localStorage.removeItem(`${llave}`);
+      document.querySelector(`${nombre}`).remove()
+    }
+  }
+}
+
+const eliminar = document.querySelectorAll("#eliminar")
+eliminar.forEach(e => {
+  e.addEventListener("click", () => {
+    alert()
+    for (let i = 0; i < localStorage.length; i++) {
+      let llave = localStorage.key(i);
+      eliminarTema(llave)
+    }
+  })
 })
