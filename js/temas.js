@@ -31,6 +31,7 @@ const predeterminado = {
   5: "#853ba2",
   6: "#ffffff"
 }
+localStorage.setItem("predeterminado", `${JSON.stringify(predeterminado)}`)
 
 // Circulos de colores
 const c = document.querySelectorAll(".predeterminado");
@@ -107,7 +108,7 @@ const crearHtml = (nombre) => {
   // Creamos el icono de eliminar
   const iconoEliminar = document.createElement('p');
   iconoEliminar.textContent = "✕"
-  iconoEliminar.setAttribute('class', 'eliminar');
+  iconoEliminar.setAttribute('id', 'eliminar');
   iconoEliminar.setAttribute('title', 'Eliminar');
   div.appendChild(iconoEliminar)
 
@@ -121,11 +122,7 @@ const crearHtml = (nombre) => {
   crearTema(nombre)
 
   div.addEventListener("click", (e) => {
-    e.preventDefault()
-    for (let i = 0; i < localStorage.length; i++) {
-      let llave = localStorage.key(i);
-      if(llave === nombre) crearTema(llave)
-    }
+    crearTema(nombre)
   })
 }
 
@@ -162,26 +159,26 @@ const crearTema = (nombre) => {
         c2[i].style.backgroundColor = `${obj[i]}`;
       }
     } 
-  }
-  for (let i = 0; i < 5; i++) {
-    if (llave === nombre) {
-      if (objHtml[i] !== null) {
-        objHtml[i].style.backgroundColor = `${obj[i]}`
+    for (let i = 0; i < 5; i++) {
+      if (llave === nombre) {
+        if (objHtml[i] !== null) {
+          objHtml[i].style.backgroundColor = `${obj[i]}`
+        }
       }
     }
-  }
-  arNo.forEach(ar => {
-    if (llave === nombre) {
-      if (arNo !== null) {
-        ar.style.backgroundColor = `${obj[5]}`
+    arNo.forEach(ar => {
+      if (llave === nombre) {
+        if (arNo !== null) {
+          ar.style.backgroundColor = `${obj[5]}`
+        }
       }
-    }
-  });
-
-  let elementosConTexto = document.querySelectorAll('p, h1, h2, h3, input[type="text"], button, span, ion-icon');
-  for (var i = 0; i < elementosConTexto.length; i++) {
-    if (llave === nombre) {
-      elementosConTexto[i].style.color = `${obj[6]}`;
+    });
+  
+    let elementosConTexto = document.querySelectorAll('p, h1, h2, h3, input[type="text"], button, span, ion-icon');
+    for (let i = 0; i < elementosConTexto.length; i++) {
+      if (llave === nombre) {
+        elementosConTexto[i].style.color = `${obj[6]}`;
+      }
     }
   }
 }
@@ -194,19 +191,18 @@ const eliminarTema = (nombre) => {
       localStorage.removeItem(`${llave}`);
       const combinaciones = document.querySelector(".combinaciones")
       combinaciones.removeChild(document.querySelector(`${nombre}`))
+      console.log(llave)
     }
   }
 }
 
-let eliminar = document.querySelectorAll(".eliminar")
-console.log(eliminar)
+let eliminar = document.querySelectorAll("#eliminar")
 for (let i = 0; i < eliminar.length; i++){
-  console.log(i)
-  console.log(eliminar[i])
   eliminar[i].addEventListener("click", () => {
     for (let i = 0; i < localStorage.length; i++) {
       llave = localStorage.key(i)
       eliminarTema(llave)
+      console.log(llave)
     }
   })
 }
