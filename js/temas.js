@@ -48,7 +48,7 @@ const guardarColor = (...color) => {
     // Cada vez que se haga click se creara un nuevo obj con los colores del nuevo tema
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-      crearObj(`${nombreTema.value}`, color[0].value, color[1].value, color[2].value, color[3].value, color[4].value, color[6].value, color[5].value);
+      crearObj(`${nombreTema.value}`, color[0].value, color[1].value, color[2].value, color[3].value, color[4].value, color[5].value, color[6].value );
     })
   }
 }
@@ -106,8 +106,8 @@ const crearHtml = (nombre) => {
 
   // Creamos el icono de eliminar
   const iconoEliminar = document.createElement('p');
-  iconoEliminar.textContent = "🗑"
-  iconoEliminar.setAttribute('id', 'eliminar');
+  iconoEliminar.textContent = "✕"
+  iconoEliminar.setAttribute('class', 'eliminar');
   iconoEliminar.setAttribute('title', 'Eliminar');
   div.appendChild(iconoEliminar)
 
@@ -119,6 +119,14 @@ const crearHtml = (nombre) => {
     div2.appendChild(circulos);
   }
   crearTema(nombre)
+
+  div.addEventListener("click", (e) => {
+    e.preventDefault()
+    for (let i = 0; i < localStorage.length; i++) {
+      let llave = localStorage.key(i);
+      if(llave === nombre) crearTema(llave)
+    }
+  })
 }
 
 // Cada vez que se de click se ejecuta la funcion crearHtml()
@@ -126,7 +134,7 @@ btn.addEventListener("click", (e) => {
   e.preventDefault()
   for (let i = 0; i < localStorage.length; i++) {
     let llave = localStorage.key(i);
-    crearHtml(llave)
+    crearHtml(llave)  
   }
 })
 
@@ -141,7 +149,6 @@ const objHtml = {
 
 // Agregarle el color a los circulos dependiendo los colores que hayan sido seleccioados
 const arNo = document.querySelectorAll(".no");
-const p = document.querySelectorAll("p")
 const crearTema = (nombre) => {
   const c2 = document.querySelectorAll(`.${nombre}`)
   let llave;
@@ -157,15 +164,26 @@ const crearTema = (nombre) => {
     } 
   }
   for (let i = 0; i < 5; i++) {
-    objHtml[i].style.backgroundColor = `${obj[i]}`
-    console.log(i)
+    if (llave === nombre) {
+      if (objHtml[i] !== null) {
+        objHtml[i].style.backgroundColor = `${obj[i]}`
+      }
+    }
   }
   arNo.forEach(ar => {
-    ar.style.backgroundColor = `${obj[5]}`
+    if (llave === nombre) {
+      if (arNo !== null) {
+        ar.style.backgroundColor = `${obj[5]}`
+      }
+    }
   });
-  p.forEach(p => {
-    p.style.color = `${obj[6]}`
-  });
+
+  let elementosConTexto = document.querySelectorAll('p, h1, h2, h3, input[type="text"], button, span, ion-icon');
+  for (var i = 0; i < elementosConTexto.length; i++) {
+    if (llave === nombre) {
+      elementosConTexto[i].style.color = `${obj[6]}`;
+    }
+  }
 }
 
 // Funcion de eliminar temas
@@ -180,11 +198,15 @@ const eliminarTema = (nombre) => {
   }
 }
 
-let eliminar = document.querySelectorAll("#eliminar")
-eliminar.forEach(e => {
-  e.addEventListener("click", () => {
-    alert()
-    console.log("funciona")
-    
+let eliminar = document.querySelectorAll(".eliminar")
+console.log(eliminar)
+for (let i = 0; i < eliminar.length; i++){
+  console.log(i)
+  console.log(eliminar[i])
+  eliminar[i].addEventListener("click", () => {
+    for (let i = 0; i < localStorage.length; i++) {
+      llave = localStorage.key(i)
+      eliminarTema(llave)
+    }
   })
-})
+}

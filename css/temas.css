@@ -50,6 +50,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  cursor: pointer;
   gap: .4em;
 }
 .circulos p{
@@ -130,18 +131,19 @@
   background-color: #555;
   border-radius: 20px;
 }
-#eliminar{
+.eliminar{
   flex-direction: row;
   position: absolute;
   right: 5px;
-  top: 5px;
-  padding: 5px;
+  font-size: 15px;
+  top: 3px;
   border-radius: 50%;
+  padding: 0px 7px 0px 7px;
   transition: background .6s;
   cursor: pointer;
   z-index: 10;
 }
-#eliminar:hover{
+.eliminar:hover{
   background-color: #666;
 }
 .crearNombreTema{
