@@ -67,7 +67,7 @@ h3{ margin-top: 35px; }
   height: auto;
   object-position: center;
   object-fit: scale-down;
-
+  transition: opacity .6s;
 }
 .loader{
   position: absolute;
@@ -76,21 +76,26 @@ h3{ margin-top: 35px; }
   height: 300px;
   opacity: 0;
 }
-.ar p{
+.no, .si{
   cursor: pointer;
   margin: 8px;
   height: 1.5em;
   padding: 5px;
-  width: 80%;
-  background-color: #334499;
   border-radius: 5px;
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
   overflow: hidden;
   transition: background-color .6s, width .6s;
 }
-.ar p:hover{ 
+.no:hover{ 
   background-color: #853ba2;
   width: 90%; 
 }
-
+.si{
+  background-color: #853ba2;
+  width: 90%;
+}
+.no{
+  background-color: #334499;
+  width: 80%;
+}

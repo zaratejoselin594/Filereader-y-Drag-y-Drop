@@ -48,45 +48,23 @@ const leerArs = (funcion, ars, ar) => {
 
 // Muestra el nombre del archivo en una columna, click en el nombre del archivo seleccionado, este archivo se muestra nuevamente en la pantalla
 let indice = 0;
-const mostrarAr = (nombre, ar, archivo) => {
+const mostrarAr = (nombre, ar) => {
   const listaAr = document.querySelector(".ar");
+  const fragmento = document.createDocumentFragment();
   const p = document.createElement("p");
   indice++
 
-  // Agregarle un identificador unico
   p.setAttribute("id", `${nombre}`);
 
-  listaAr.appendChild(p);
+  fragmento.appendChild(p)
+  listaAr.appendChild(fragmento);
   p.textContent = `${nombre}`;
 
-  sessionStorage.setItem(`${nombre}`, `${ar}`);
-  sessionStorage.removeItem('IsThisFirstTime_Log_From_LiveServer');
-  
+  sessionStorage.setItem(`${nombre}`, `${ar}`);  
   reaparecerAr(nombre)
-
   p.addEventListener("click", () => {
-    if (archivo.type === "text/plain") reaparecerAr(nombre);
-    else if (archivo.type === "image/png" || archivo.type === "image/jpeg") reaparecerAr(nombre);
-    else if (archivo.type === "video/mp4") reaparecerAr(nombre);
+    reaparecerAr(nombre)
   })
-}
-
-// Mostrar nuevamente el archivo en pantalla
-const reaparecerAr = (nombre) => {
-  for (let i = 0; i < sessionStorage.length; i++) {
-    let llave = sessionStorage.key(i);
-    if (llave === nombre) {
-      document.getElementsByClassName(`${llave}`)[0].style.opacity = "1";
-      document.getElementById(`${llave}`).style.backgroundColor = "#853ba2";
-      document.getElementById(`${llave}`).style.width = "90%";
-      document.getElementById(`${llave}`).setAttribute("class", "si")
-    } else {
-      document.getElementsByClassName(`${llave}`)[0].style.opacity = "0";
-      document.getElementById(`${llave}`).style.backgroundColor = "#349";
-      document.getElementById(`${llave}`).style.width = "80%";
-      document.getElementById(`${llave}`).setAttribute("class", "no")
-    } 
-  }
 }
 
 // Cada archivo anterior desaparece
@@ -100,18 +78,32 @@ const desaparecerAr = (obj) => {
   }
 }
 
+// Mostrar nuevamente el archivo en pantalla
+const reaparecerAr = (nombre) => {
+  for (let i = 0; i < sessionStorage.length; i++) {
+    let llave = sessionStorage.key(i);
+    if (llave === nombre) {
+      document.getElementsByClassName(`${llave}`)[0].style.opacity = "1";
+      document.getElementById(`${llave}`).setAttribute("class", "si")
+    } else {
+      document.getElementsByClassName(`${llave}`)[0].style.opacity = "0";
+      document.getElementById(`${llave}`).setAttribute("class", "no")
+    } 
+  }
+}
+
+const salida = document.querySelector(".salida")
 // Carga el texto en el div con la clase salida
 const cargarTxt = (ar, nombre) => {
   const leer = new FileReader();
   leer.readAsText(ar);
-  barProgress(ar);
   leer.addEventListener("load", (e) => {
-    //let txtDataa = document.querySelector(".salida").innerHTML = e.currentTarget.result
     let txtData = document.createElement("p");
-    desaparecerAr(txtData)
+    salida.appendChild(txtData)
     txtData.setAttribute("class", `${nombre}`)
-    document.querySelector(".salida").appendChild(txtData)
     txtData.innerHTML = e.currentTarget.result;
+
+    desaparecerAr(txtData)
     mostrarAr(nombre, txtData, ar)
   })
 }
@@ -120,14 +112,14 @@ const cargarTxt = (ar, nombre) => {
 const cargarImg = (ar, nombre) => {
   const leer = new FileReader();
   leer.readAsDataURL(ar);
-  barProgress(ar)
   leer.addEventListener("load", () => {
     let IMG = document.createElement("IMG");
-    desaparecerAr(IMG)
     let url = URL.createObjectURL(ar);
     IMG.setAttribute("src", url);
     IMG.setAttribute("class", `${nombre}`)
-    document.querySelector(".salida").appendChild(IMG);
+    salida.appendChild(IMG);
+
+    desaparecerAr(IMG)
     mostrarAr(nombre, url, ar);
   })
 }
@@ -136,7 +128,6 @@ const cargarImg = (ar, nombre) => {
 const cargarVideo = (ar, nombre) => {
   const leer = new FileReader();
   leer.readAsArrayBuffer(ar);
-  barProgress(ar)
   
   leer.addEventListener("load", (e) => {
     let video = new Blob([new Uint8Array(e.currentTarget.result)],{ type: "video/mp4" });
@@ -145,10 +136,12 @@ const cargarVideo = (ar, nombre) => {
     let videoPlay = document.createElement("video");
 
     videoPlay.setAttribute("src", url);
-    document.querySelector(".salida").appendChild(videoPlay);
-    mostrarAr(nombre, url, ar)
+    salida.appendChild(videoPlay);
     videoPlay.play()
     videoPlay.setAttribute("controls", "on")
+
+    desaparecerAr(videoPlay)
+    mostrarAr(nombre, url, ar)
   })
 }
 
