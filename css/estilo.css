@@ -34,7 +34,10 @@
   box-shadow: #3333 10px 10px 15px;
   transition: border .6s, box-shadow .7s;
 }
-
+.progresoBar{
+  position: absolute;
+  width: 16.5%;
+}
 .archivos{
   text-align: center;
   width: 83%;
@@ -68,13 +71,6 @@ h3{ margin-top: 35px; }
   object-position: center;
   object-fit: scale-down;
   transition: opacity .6s;
-}
-.loader{
-  position: absolute;
-  background:transparent;
-  width: 300px; 
-  height: 300px;
-  opacity: 0;
 }
 .no, .si{
   cursor: pointer;

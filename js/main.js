@@ -92,8 +92,8 @@ const reaparecerAr = (nombre) => {
   }
 }
 
-const salida = document.querySelector(".salida")
 // Carga el texto en el div con la clase salida
+const salida = document.querySelector(".salida")
 const cargarTxt = (ar, nombre) => {
   const leer = new FileReader();
   leer.readAsText(ar);
@@ -112,15 +112,19 @@ const cargarTxt = (ar, nombre) => {
 const cargarImg = (ar, nombre) => {
   const leer = new FileReader();
   leer.readAsDataURL(ar);
+  barProgress(ar)
   leer.addEventListener("load", () => {
     let IMG = document.createElement("IMG");
     let url = URL.createObjectURL(ar);
     IMG.setAttribute("src", url);
     IMG.setAttribute("class", `${nombre}`)
     salida.appendChild(IMG);
-
+    
     desaparecerAr(IMG)
     mostrarAr(nombre, url, ar);
+  })
+  leer.addEventListener("progress", (e) => {
+    console.log(`${e.loaded/ar.size*100}`)
   })
 }
 
@@ -146,12 +150,11 @@ const cargarVideo = (ar, nombre) => {
 }
 
 // Barra de progreso se muestra tiempo de carga del archivo
-const barProgress = (obj) => {
-  const leer = new FileReader();
+const barProgress = (ar) => {
+  const leer = new FileReader(ar);
   leer.addEventListener("progress", (e) => {
-    let carga = Math.round(e.loaded / obj.size * 100);
+    let carga = Math.round(e.loaded / ar.size * 100);
     let barra = document.querySelector(".progresoBar");
-    barra.style.position = "absolute";
-    barra.textContent = `${carga}%`;
+    barra.innerHTML = `${carga}%`;
   }) 
 }
