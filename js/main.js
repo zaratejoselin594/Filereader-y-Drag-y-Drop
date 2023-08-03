@@ -132,7 +132,7 @@ const cargarImg = (ar, nombre) => {
 const cargarVideo = (ar, nombre) => {
   const leer = new FileReader();
   leer.readAsArrayBuffer(ar);
-  
+  barProgress(ar)
   leer.addEventListener("load", (e) => {
     let video = new Blob([new Uint8Array(e.currentTarget.result)],{ type: "video/mp4" });
     
