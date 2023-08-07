@@ -39,7 +39,7 @@ const nombreTema = document.getElementById("nombreobj")
 // Guardamos el colores seleccionados para crear el tema
 const guardarColor = (...color) => {
   for (let i = 0; i < color.length; i++){
-    // Le damos el valor a los colores de predeterminado
+    // Le damos el valor de colores predeterminado
     color[i].value = predeterminado[i]
 
     // Cada vez que se haga click se creara un nuevo obj con los colores del nuevo tema
@@ -119,7 +119,7 @@ const crearHtml = (nombre) => {
   }
   crearTema(nombre)
 
-  div.addEventListener("click", () => {
+  div2.addEventListener("click", () => {
     crearTema(nombre)
   })
 }
@@ -174,24 +174,4 @@ const crearTema = (nombre) => {
       }
     }
   }
-}
-
-// Funcion de eliminar temas
-const eliminarTema = (nombre) => {
-  for (let i = 0; i < localStorage.length; i++) {
-    llave = localStorage.key(i)
-    if (llave === nombre) {
-      localStorage.removeItem(`${llave}`);
-      const combinaciones = document.querySelector(".combinaciones")
-      combinaciones.removeChild(document.querySelector(`${llave}`))
-      console.log(llave)
-    }
-  }
-}
-
-let eliminar = document.querySelectorAll("#eliminar")
-for (let i = 0; i < eliminar.length; i++){
-  eliminar[i].addEventListener("click", () => {
-    console.log("click")
-  })
 }

@@ -22,6 +22,7 @@
   flex-direction: column;
   align-items: center;
 }
+
 .combinaciones{
   width: 94%;
   height: 7em;
@@ -50,8 +51,14 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  cursor: pointer;
   gap: .4em;
+}
+.circulos div{
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
 }
 .circulos p{
   display: block;
@@ -82,8 +89,8 @@
   gap: 1em;
 }
 .contenidoTema {
-  width: 60%;
-  height: 70%;
+  width: 74%;
+  height: 80%;
   position: relative;
   border-radius: .5em;
   background-color: #333;
@@ -149,7 +156,7 @@
   padding: 2px 7px 2px 7px;
   transition: background .6s;
   cursor: pointer;
-  z-index: 10;
+  z-index: 100;
 }
 #eliminar:hover{
   background-color: #666;
