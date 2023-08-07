@@ -34,27 +34,28 @@ const predeterminado = {
 localStorage.setItem("Predeterminado", `${JSON.stringify(predeterminado)}`)
 
 const btn = document.getElementById("btn")
-const nombreTema = document.getElementById("nombreobj")
+const nombreTema = document.getElementById("nombreobj");
 
 // Guardamos el colores seleccionados para crear el tema
 const guardarColor = (...color) => {
   for (let i = 0; i < color.length; i++){
     // Le damos el valor de colores predeterminado
     color[i].value = predeterminado[i]
-
-    // Cada vez que se haga click se creara un nuevo obj con los colores del nuevo tema
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      crearObj(`${nombreTema.value}`, color[0].value, color[1].value, color[2].value, color[3].value, color[4].value, color[5].value, color[6].value );
-    })
   }
 }
 // Ejecutamos la funcion
 guardarColor(color1, color2, color3, color4, color5, color6, color7);
 
+// Cada vez que se haga click se creara un nuevo obj con los colores del nuevo tema
+btn.addEventListener("click", (e) => {
+  e.preventDefault()
+  crearObj(`${nombreTema.value}`, color1.value, color2.value, color3.value, color4.value, color5.value, color6.value, color7.value);
+  crearHtml(nombreTema.value)
+})
+
 // Creamos la funcion que crea objetos
 const crearObj = (nombre, cero, uno, dos, tres, cuatro, cinco, seis) => {
-  let objetoo = nombre + "_Obj"
+  let objetoo = nombre + "-Obj"
   objetoo = {
     0: `${cero}`,
     1: `${uno}`,
@@ -71,11 +72,6 @@ const crearObj = (nombre, cero, uno, dos, tres, cuatro, cinco, seis) => {
 
 // Cada vez que se recarge la pagina cargar los temas en el div
 window.addEventListener("load", () => {
-  const eliminar = document.querySelectorAll("#eliminar")
-  eliminar.forEach(e => {
-    e.classList.remove("md", "hydrated");
-  })
-
   for (let i = 0; i < localStorage.length; i++){
     let llave = localStorage.key(i);
     crearHtml(llave)
@@ -123,15 +119,6 @@ const crearHtml = (nombre) => {
     crearTema(nombre)
   })
 }
-
-// Cada vez que se de click se ejecuta la funcion crearHtml()
-btn.addEventListener("click", (e) => {
-  e.preventDefault()
-  for (let i = 0; i < localStorage.length; i++) {
-    let llave = localStorage.key(i);
-    crearHtml(llave)  
-  }
-})
 
 // Crear obj con las partes de la web
 const objHtml = {

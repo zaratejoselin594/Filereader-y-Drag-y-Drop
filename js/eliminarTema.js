@@ -16,5 +16,6 @@ let eliminar = document.querySelectorAll("#eliminar")
 eliminar.forEach(e => {
   e.addEventListener("click", () => {
     console.log("click")
+    
   })
 });
