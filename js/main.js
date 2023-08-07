@@ -123,9 +123,6 @@ const cargarImg = (ar, nombre) => {
     desaparecerAr(IMG)
     mostrarAr(nombre, url, ar);
   })
-  leer.addEventListener("progress", (e) => {
-    console.log(`${e.loaded/ar.size*100}`)
-  })
 }
 
 // Muestra el video en el div con la clase salida
