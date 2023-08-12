@@ -5,9 +5,8 @@ const eliminarTema = (nombre) => {
     llave = localStorage.key(i)
     if (llave === nombre) {
       localStorage.removeItem(`${llave}`);
-      const combinaciones = document.querySelector(".combinaciones")
-      combinaciones.removeChild(document.querySelector(`${llave}`))
-      console.log(llave)
+     
+      document.querySelector(`${llave}`).remove()
     }
   }
 }
@@ -15,7 +14,10 @@ const eliminarTema = (nombre) => {
 let eliminar = document.querySelectorAll("#eliminar")
 eliminar.forEach(e => {
   e.addEventListener("click", () => {
-    console.log("click")
-    
+    console.log("funciona")
+    for (let i = 0; i < localStorage.length; i++) {
+      llave = localStorage.key(i)
+      eliminarTema(llave)
+    }
   })
 });
